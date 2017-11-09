@@ -1,10 +1,7 @@
 import { AlunoService } from '../../providers/aluno.service';
 import { Component, OnInit } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import { MatListModule, MatTableModule } from '@angular/material';
-import { DataSource } from '@angular/cdk/collections';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
+import { MatListModule, MatButtonModule, MatIconModule } from '@angular/material';
 
 @Component({
   selector: 'app-lista',
@@ -28,7 +25,7 @@ export class ListaComponent implements OnInit {
   lista() {
     this.alunoService.lista().subscribe(response => {
       this.alunos = response.json();
-    })
+    });
   }
 
   save() {
@@ -37,15 +34,4 @@ export class ListaComponent implements OnInit {
     });
   }
 
-}
-
-let alunos2 = this.alunos;
-
-export class ExampleDataSource extends DataSource<any> {
-  /** Connect function called by the table to retrieve one stream containing the data to render. */
-  connect(): Observable<Element[]> {
-    return Observable.of(alunos2);
-  }
-
-  disconnect() {}
 }

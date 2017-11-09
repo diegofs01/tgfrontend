@@ -1,0 +1,99 @@
+<h1>Novo Aluno</h1>
+
+<form class="formNovoAluno">
+  <mat-form-field>
+    <input matInput name="RA" type="text" placeholder="RA" [(ngModel)]="aluno.ra">
+    <button mat-button *ngIf="aluno.ra" matSuffix mat-icon-button aria-label="Clear" (click)="aluno.ra=''">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput name="Nome" type="text" placeholder="Nome" [(ngModel)]="aluno.nome">
+    <button mat-button *ngIf="aluno.nome" matSuffix mat-icon-button aria-label="Clear" (click)="aluno.nome=''">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput [textMask]="{mask: rg}" guide name="RG" type="text" placeholder="RG" [(ngModel)]="aluno.rg">
+    <button mat-button *ngIf="aluno.rg" matSuffix mat-icon-button aria-label="Clear" (click)="aluno.rg=''">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput [textMask]="{mask: cpf}" guide name="CPF" type="text" placeholder="CPF" [(ngModel)]="aluno.cpf">
+    <button mat-button *ngIf="aluno.cpf" matSuffix mat-icon-button aria-label="Clear" (click)="aluno.cpf=''">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput name="Endereco" type="text" placeholder="Endereço" [(ngModel)]="aluno.endereco">
+    <button mat-button *ngIf="aluno.endereco" matSuffix mat-icon-button aria-label="Clear" (click)="aluno.endereco=''">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput name="Numero" type="number" placeholder="Numero" [(ngModel)]="aluno.numero">
+    <button mat-button *ngIf="aluno.numero" matSuffix mat-icon-button aria-label="Clear" (click)="aluno.numero=''">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput name="Complemento" type="text" placeholder="Complemento" [(ngModel)]="aluno.complemento">
+    <button mat-button *ngIf="aluno.complemento" matSuffix mat-icon-button aria-label="Clear" (click)="aluno.complemento=''">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput name="Bairro" type="text" placeholder="Bairro" [(ngModel)]="aluno.bairro">
+    <button mat-button *ngIf="aluno.bairro" matSuffix mat-icon-button aria-label="Clear" (click)="aluno.bairro=''">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput name="Cidade" type="text" placeholder="Cidade" [(ngModel)]="aluno.cidade">
+    <button mat-button *ngIf="aluno.cidade" matSuffix mat-icon-button aria-label="Clear" (click)="aluno.cidade=''">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select name="Estado" placeholder="Estado" [(ngModel)]="aluno.estado" >
+      <mat-option *ngFor="let estado of estados" [value]="estado">
+        {{estado}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput [textMask]="{mask: cep}" guide name="CEP" type="text" placeholder="Cep" [(ngModel)]="aluno.cep">
+    <button mat-button *ngIf="aluno.cep" matSuffix mat-icon-button aria-label="Clear" (click)="aluno.cep=''">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput [textMask]="{mask: telefone}" guide name="NumeroTelefone" type="text" placeholder="Telefone" [(ngModel)]="aluno.numeroTelefone">
+    <button mat-button *ngIf="aluno.numeroTelefone" matSuffix mat-icon-button aria-label="Clear" (click)="aluno.numeroTelefone=''">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput [textMask]="{mask: celular}" guide name="NumeroCelular" type="text" placeholder="Celular" [(ngModel)]="aluno.numeroCelular">
+    <button mat-button *ngIf="aluno.numeroCelular" matSuffix mat-icon-button aria-label="Clear" (click)="aluno.numeroCelular=''">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+</form>
+
+<button mat-raised-button color="primary" (click)="salvar()">Salvar</button>
+<button mat-raised-button color="warn" (click)="limparCampos()">Resetar</button>
+<button mat-raised-button routerLink="/aluno/lista">Voltar</button>

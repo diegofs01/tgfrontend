@@ -1,19 +1,9 @@
 <div id="listaAlunos">
 
-<mat-selection-list class="lista">
-  <mat-list-option *ngFor="let aluno of alunos">
-    <p matLine>{{aluno.ra}}</p>
-    <p matLine>{{aluno.nome}}</p>
-    <p matLine>{{aluno.rg}}</p>
-    <p matLine>{{aluno.cpf}}</p>
-  </mat-list-option>
-</mat-selection-list>
+<mat-nav-list class="lista">
+  <a mat-list-item *ngFor="let aluno of alunos" [routerLink]="['/aluno/editar', aluno.ra]"> {{aluno.ra}} {{aluno.nome}} {{aluno.rg}} {{aluno.cpf}}</a>
+</mat-nav-list>
 
-<mat-table #table [dataSource]="alunos">
-  <ng-container matColumnDef="ra">
-    <mat-header-cell *matHeaderCellDef>RA</mat-header-cell>
-    <mat-cell *matCellDef="let aluno">{{aluno.ra}}</mat-cell>
-  </ng-container>
-</mat-table>
+<button mat-raised-button color="primary" routerLink="/aluno/novo">Novo Aluno</button>
 
 </div>

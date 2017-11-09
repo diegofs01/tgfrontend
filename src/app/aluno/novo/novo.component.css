@@ -1,0 +1,8 @@
+.novoFormAluno {
+    display: flex;
+    flex-direction: row;
+}
+
+.novoFormAluno > * {
+    width: 100%;
+}
