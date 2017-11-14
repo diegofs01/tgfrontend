@@ -1,0 +1,32 @@
+<h2>Editar Ocorrência do Veículo {{ocorrencia.placaVeiculo}}</h2>
+
+<form class="formNovoOcorrencia">
+  <mat-form-field>
+    <input matInput name="placaVeiculo" type="text" placeholder="Placa do Veículo" [(ngModel)]="ocorrencia.placaVeiculo" disabled>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput name="data" type="date" placeholder="Data da Ocorrencia" [(ngModel)]="ocorrencia.data" disabled>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput name="hora" type="time" placeholder="Hora da Ocorrencia" [(ngModel)]="ocorrencia.hora" disabled>
+  </mat-form-field>
+
+  <mat-form-field>
+    <textarea matInput name="descricao" placeholder="Descrição da Ocorrencia" [(ngModel)]="ocorrencia.descricao"></textarea>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select name="TipoOcorrencia" placeholder="Tipo de Ocorrencia" [(ngModel)]="ocorrencia.tipoOcorrencia" >
+      <mat-option *ngFor="let tipoOcorrencia of tiposOcorrencias" [value]="tipoOcorrencia">
+        {{tipoOcorrencia.nome}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+</form>
+
+<button mat-raised-button color="primary" (click)="salvar()">Salvar</button>
+<button mat-raised-button color="warn" (click)="excluir()">Excluir</button>
+<button mat-raised-button [routerLink]="['/ocorrencia/listaOcorrencia', ocorrencia.placaVeiculo]">Voltar</button>

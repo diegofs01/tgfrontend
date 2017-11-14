@@ -1,0 +1,14 @@
+<div id="listaVeiculos">
+  <h2>Selecione o Veículo para Listar as Ocorrencias</h2>
+
+  <mat-form-field>
+    <input matInput [textMask]="{mask: placa}" guide name="filtro" type="text" placeholder="Filtro" [(ngModel)]="filtroPlaca">
+  </mat-form-field>
+  <button mat-raised-button color="primary" (click)="filtrarVeiculo()">Filtar Veiculo</button>
+  <button mat-raised-button color="warn" (click)="resetarFiltro()">Resetar Filtro</button>
+
+  <mat-nav-list class="lista">
+    <a mat-list-item *ngFor="let veiculo of veiculos" [routerLink]="['/ocorrencia/listaOcorrencia', veiculo.placa]"> {{veiculo.placa}} {{veiculo.modelo}} {{veiculo.raAluno}}</a>
+  </mat-nav-list>
+  
+</div>

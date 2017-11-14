@@ -1,4 +1,4 @@
-import { AlunoService } from '../../providers/aluno.service';
+import { VeiculoService } from '../../providers/veiculo.service';
 import { Component, OnInit } from '@angular/core';
 import { MatListModule, MatButtonModule, MatIconModule } from '@angular/material';
 
@@ -9,28 +9,23 @@ import { MatListModule, MatButtonModule, MatIconModule } from '@angular/material
 })
 export class ListaComponent implements OnInit {
 
-  public alunos: Aluno[];
-  public aluno: Aluno;
+  public veiculos: Veiculo[];
+  public veiculo: Veiculo;
 
   constructor(
-    private alunoService: AlunoService
+    private veiculoService: VeiculoService
   ) { }
 
   ngOnInit() {
-    this.alunos = [];
+    this.veiculos = [];
     this.lista();
   }
 
   lista() {
-    this.alunoService.lista().subscribe(response => {
-      this.alunos = response.json();
+    this.veiculoService.lista().subscribe(response => {
+      this.veiculos = response.json();
     });
   }
 
-  save() {
-    this.alunoService.save(this.aluno).subscribe(response => {
-      console.log(response.json());
-    });
-  }
-
+  
 }

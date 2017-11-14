@@ -1,0 +1,17 @@
+<h1>Editar Tipo de Ocorrencia {{tipoOcorrencia.id}}</h1>
+
+<form class="formNovoVeiculo">
+  <mat-form-field>
+    <input matInput name="id" type="text" placeholder="ID" [(ngModel)]="tipoOcorrencia.id" disabled>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput name="nome" type="text" placeholder="Nome" [(ngModel)]="tipoOcorrencia.nome" required>
+    <button mat-button *ngIf="tipoOcorrencia.nome" matSuffix mat-icon-button aria-label="Clear" (click)="tipoOcorrencia.nome=''">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+</form>
+
+<button mat-raised-button color="primary" (click)="salvar()">Salvar</button>
+<button mat-raised-button color="warn" (click)="excluir()">Excluir</button>
+<button mat-raised-button routerLink="/tipoOcorrencia/lista">Voltar</button>

@@ -1,0 +1,9 @@
+<div id="listaVeiculos">
+  
+  <mat-nav-list class="lista">
+    <a mat-list-item *ngFor="let veiculo of veiculos" [routerLink]="['/veiculo/editar', veiculo.placa]"> {{veiculo.placa}} {{veiculo.modelo}} {{veiculo.raAluno}}</a>
+  </mat-nav-list>
+  
+  <button mat-raised-button color="primary" routerLink="/veiculo/novo">Novo Veiculo</button>
+  
+  </div>
