@@ -10,5 +10,7 @@
   <mat-nav-list class="lista">
     <a mat-list-item *ngFor="let veiculo of veiculos" [routerLink]="['/ocorrencia/listaOcorrencia', veiculo.placa]"> {{veiculo.placa}} {{veiculo.modelo}} {{veiculo.raAluno}}</a>
   </mat-nav-list>
+
+  <button mat-raised-button color="primary" [routerLink]="['/ocorrencia/novo', 'semPlaca', '']">Nova Ocorrencia</button>
   
 </div>

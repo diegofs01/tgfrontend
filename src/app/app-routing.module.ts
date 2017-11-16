@@ -56,9 +56,9 @@ const routes: Routes = [
     component: OcorrenciaLista
   },
   {
-    path: 'ocorrencia/novo/:placa',
+    path: 'ocorrencia/novo/:tipo/:placa',
     component: OcorrenciaNovo
-  }, 
+  },
   {
     path: 'ocorrencia/editar/:placa/:data/:hora',
     component: OcorrenciaEditar

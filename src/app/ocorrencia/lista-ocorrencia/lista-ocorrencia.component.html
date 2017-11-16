@@ -6,7 +6,7 @@
 
   <p *ngIf="listaVazia">Nenhuma Ocorencia Cadastrada</p>
   
-  <button mat-raised-button color="primary" [routerLink]="['/ocorrencia/novo', placa]">Nova Ocorrencia</button>
+  <button mat-raised-button color="primary" [routerLink]="['/ocorrencia/novo', 'comPlaca', placa]">Nova Ocorrencia</button>
   <button mat-raised-button [routerLink]="['/ocorrencia/listaVeiculos']">Voltar</button>
   
   </div>

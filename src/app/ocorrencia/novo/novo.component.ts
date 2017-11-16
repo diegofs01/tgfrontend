@@ -23,6 +23,7 @@ export class NovoComponent implements OnInit {
   public sub: any;
   public placa: string;
   public tiposOcorrencias: TipoOcorrencia[];
+  public paginaAnterior: string;
 
   public hora = [/[0-2]/, /[0-9]/, ':', /[0-9]/, /[0-9]/, ':', /[0-9]/, /[0-9]/];
 
@@ -36,8 +37,16 @@ export class NovoComponent implements OnInit {
   ngOnInit() {
     this.ocorrencia = {} as Ocorrencia;
     this.sub = this.route.params.subscribe(params => {
-      this.placa = params['placa'];
-      this.ocorrencia.placaVeiculo = this.placa;
+      if(params['tipo'] === 'comPlaca') {
+        this.placa = params['placa'];
+        this.ocorrencia.placaVeiculo = this.placa;
+        this.paginaAnterior = 'listaOcorrencia';
+      } else {
+        this.placa = '';
+        this.ocorrencia.placaVeiculo = '';
+        this.paginaAnterior = 'listaVeiculo';
+      }
+      console.log(this.paginaAnterior);
     });
     this.tipoOcorrenciaService.lista().subscribe(response => {
       this.tiposOcorrencias = response.json();
@@ -50,13 +59,21 @@ export class NovoComponent implements OnInit {
     this.ocorrenciaService.save(this.ocorrencia)
     .subscribe(response => {
       console.log(response.json());
+      this.voltar();
     });
-    this.router.navigate(['/ocorrencia/listaOcorrencia', this.placa]);
   }
 
   limparCampos() {
     this.ocorrencia = {} as Ocorrencia;
     this.ocorrencia.placaVeiculo = this.placa;
+  }
+
+  voltar() {
+    if(this.paginaAnterior === 'listaOcorrencia') {
+      this.router.navigate(['/ocorrencia/listaOcorrencia', this.placa]);
+    } else {
+      this.router.navigate(['/ocorrencia/listaVeiculos']);
+    }
   }
 
 }
