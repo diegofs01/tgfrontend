@@ -12,4 +12,6 @@ interface Aluno {
     cep: string,
     numeroTelefone: string,
     numeroCelular: string,
+    email: string,
+    idCurso: number
 };

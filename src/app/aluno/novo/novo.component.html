@@ -92,6 +92,21 @@
       <mat-icon>close</mat-icon>
     </button>
   </mat-form-field>
+
+  <mat-form-field>
+    <input matInput id="emailAluno" name="Email" type="email" placeholder="Email" [(ngModel)]="aluno.email" [email]="true" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+    <button mat-button *ngIf="aluno.email" matSuffix mat-icon-button aria-label="Clear" (click)="aluno.email=''">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select name="Curso" placeholder="Curso" [(ngModel)]="aluno.idCurso" >
+      <mat-option *ngFor="let curso of cursos" [value]="curso.id">
+        {{curso.nome}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 </form>
 
 <button mat-raised-button color="primary" (click)="salvar()">Salvar</button>

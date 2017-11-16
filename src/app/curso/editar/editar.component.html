@@ -1,0 +1,17 @@
+<h1>Editar Curso {{curso.id}}</h1>
+
+<form class="formEditarCurso">
+  <mat-form-field>
+    <input matInput name="id" type="text" placeholder="ID" [(ngModel)]="curso.id" disabled>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput name="nome" type="text" placeholder="Nome" [(ngModel)]="curso.nome" required>
+    <button mat-button *ngIf="curso.nome" matSuffix mat-icon-button aria-label="Clear" (click)="curso.nome=''">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+</form>
+
+<button mat-raised-button color="primary" (click)="salvar()">Salvar</button>
+<button mat-raised-button color="warn" (click)="excluir()">Excluir</button>
+<button mat-raised-button routerLink="/curso/lista">Voltar</button>

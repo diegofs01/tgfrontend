@@ -1,6 +1,9 @@
+import { Curso } from '../../../model/curso.model';
+import { CursoService } from '../../providers/curso.service';
 import { AlunoService } from '../../providers/aluno.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { EmailValidator } from '@angular/forms';
 import { 
   MatFormFieldModule, 
   MatInputModule, 
@@ -19,6 +22,7 @@ export class EditarComponent implements OnInit, OnDestroy {
   private sub: any;
 
   public aluno: Aluno;
+  public cursos: Curso[];
   
   public rg = [/[1-9]/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /([1-9]|X|x)/];
   public cpf = [/[1-9]/, /\d/, /\d/, '-',  /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, '/', /\d/, /\d/];
@@ -34,6 +38,7 @@ export class EditarComponent implements OnInit, OnDestroy {
 
   constructor(
     private alunoService: AlunoService,
+    private cursoService: CursoService,
     private route: ActivatedRoute,
     private router: Router
   ) { }
@@ -45,6 +50,9 @@ export class EditarComponent implements OnInit, OnDestroy {
       this.alunoService.buscar(ra).subscribe(response => {
         this.aluno = response.json();
       });
+    });
+    this.cursoService.lista().subscribe(response => {
+      this.cursos = response.json();
     });
   }
 

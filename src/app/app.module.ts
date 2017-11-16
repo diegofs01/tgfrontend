@@ -21,20 +21,28 @@ import { OcorrenciaService } from './providers/ocorrencia.service';
 import { VeiculoService } from './providers/veiculo.service';
 import { AlunoService } from './providers/aluno.service';
 import { TipoOcorrenciaService } from './providers/tipo-ocorrencia.service';
+import { CursoService } from './providers/curso.service';
 
 import { ListaComponent as AlunoLista} from './aluno/lista/lista.component';
 import { NovoComponent as AlunoNovo } from './aluno/novo/novo.component';
 import { EditarComponent as AlunoEditar } from './aluno/editar/editar.component';
+
 import { ListaComponent as VeiculoLista } from './veiculo/lista/lista.component';
 import { NovoComponent as VeiculoNovo } from './veiculo/novo/novo.component';
 import { EditarComponent as VeiculoEditar } from './veiculo/editar/editar.component';
+
 import { ListaVeiculosComponent as OcorrenciaListaVeiculos } from './ocorrencia/lista-veiculos/lista-veiculos.component';
 import { ListaOcorrenciaComponent as OcorrenciaLista } from './ocorrencia/lista-ocorrencia/lista-ocorrencia.component';
 import { NovoComponent as OcorrenciaNovo } from './ocorrencia/novo/novo.component';
 import { EditarComponent as OcorrenciaEditar } from './ocorrencia/editar/editar.component';
+
 import { ListaComponent as TipoOcorrenciaLista } from './tipo-ocorrencia/lista/lista.component';
 import { EditarComponent as TipoOcorrenciaEditar } from './tipo-ocorrencia/editar/editar.component';
 import { NovoComponent as TipoOcorrenciaNovo } from './tipo-ocorrencia/novo/novo.component';
+
+import { ListaComponent as CursoLista } from './curso/lista/lista.component';
+import { EditarComponent as CursoEditar } from './curso/editar/editar.component';
+import { NovoComponent as CursoNovo } from './curso/novo/novo.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +59,10 @@ import { NovoComponent as TipoOcorrenciaNovo } from './tipo-ocorrencia/novo/novo
     OcorrenciaEditar,
     TipoOcorrenciaLista,
     TipoOcorrenciaEditar,
-    TipoOcorrenciaNovo
+    TipoOcorrenciaNovo,
+    CursoLista,
+    CursoEditar,
+    CursoNovo
   ],
   imports: [
     BrowserModule,
@@ -71,7 +82,8 @@ import { NovoComponent as TipoOcorrenciaNovo } from './tipo-ocorrencia/novo/novo
     AlunoService,
     VeiculoService,
     OcorrenciaService,
-    TipoOcorrenciaService
+    TipoOcorrenciaService,
+    CursoService
   ],
   bootstrap: [AppComponent]
 })

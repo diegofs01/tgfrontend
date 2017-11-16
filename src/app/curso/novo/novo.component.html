@@ -1,0 +1,14 @@
+<h2>Novo Curso</h2>
+
+<form class="formCurso">
+  <mat-form-field>
+    <input matInput name="nome" type="text" placeholder="Nome" [(ngModel)]="curso.nome" required>
+    <button mat-button *ngIf="curso.nome" matSuffix mat-icon-button aria-label="Clear" (click)="curso.nome=''">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+</form>
+
+<button mat-raised-button color="primary" (click)="salvar()">Salvar</button>
+<button mat-raised-button color="warn" (click)="excluir()">Excluir</button>
+<button mat-raised-button routerLink="/curso/lista">Voltar</button>
