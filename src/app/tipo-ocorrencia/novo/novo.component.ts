@@ -31,8 +31,8 @@ export class NovoComponent implements OnInit {
     this.tipoOcorrenciaService.save(this.tipoOcorrencia)
     .subscribe(response => {
       console.log(response.json());
+      this.router.navigate(['/tipoOcorrencia/lista']);
     });
-    this.router.navigate(['/tipoOcorrencia/lista']);
   }
 
   limparCampos() {
