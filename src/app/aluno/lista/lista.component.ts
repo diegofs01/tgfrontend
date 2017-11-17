@@ -11,6 +11,7 @@ export class ListaComponent implements OnInit {
 
   public alunos: Aluno[];
   public aluno: Aluno;
+  public filtroAluno: string;
 
   constructor(
     private alunoService: AlunoService
@@ -33,4 +34,17 @@ export class ListaComponent implements OnInit {
     });
   }
 
+  filtrarAluno() {
+    this.alunos.forEach(aluno => {
+      if(aluno.ra === this.filtroAluno) {
+        this.alunos = [];
+        this.alunos.push(aluno);
+      }
+    });
+  }
+
+  resetarFiltro() {
+    this.lista();
+    this.filtroAluno = '';
+  }
 }

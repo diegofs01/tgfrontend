@@ -11,6 +11,9 @@ export class ListaComponent implements OnInit {
 
   public veiculos: Veiculo[];
   public veiculo: Veiculo;
+  public filtroPlaca: string;
+
+  public placa = [/([A-Z]|[a-z])/, /([A-Z]|[a-z])/, /([A-Z]|[a-z])/, '-', /[1-9]/, /\d/, /\d/, /\d/];
 
   constructor(
     private veiculoService: VeiculoService
@@ -27,5 +30,19 @@ export class ListaComponent implements OnInit {
     });
   }
 
+  filtrarVeiculo() {
+    this.filtroPlaca = this.filtroPlaca.toUpperCase();
+    this.veiculos.forEach(veiculo => {
+      if(veiculo.placa === this.filtroPlaca) {
+        this.veiculos = [];
+        this.veiculos.push(veiculo);
+      }
+    });
+  }
+
+  resetarFiltro() {
+    this.lista();
+    this.filtroPlaca = '';
+  }
   
 }

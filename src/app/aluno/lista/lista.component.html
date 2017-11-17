@@ -2,17 +2,23 @@
 
 <h2>Lista de Alunos</h2>
 
-<div class="titulo">
-  <span class="ra">RA</span>
-  <span class="nome">Nome</span>
-  <span class="rg">RG</span>
-  <span class="cpf">CPF</span>
-</div>
+  <mat-form-field>
+    <input matInput name="filtro" type="text" placeholder="Filtro" [(ngModel)]="filtroAluno">
+  </mat-form-field>
+  <button mat-raised-button color="primary" (click)="filtrarAluno()">Filtar Aluno</button>
+  <button mat-raised-button color="warn" (click)="resetarFiltro()">Resetar Filtro</button>
 
-<mat-nav-list class="lista">
-  <a mat-list-item *ngFor="let aluno of alunos" [routerLink]="['/aluno/editar', aluno.ra]"> {{aluno.ra}} | {{aluno.nome}} | {{aluno.rg}} | {{aluno.cpf}}</a>
-</mat-nav-list>
+  <div class="titulo">
+    <span class="ra">RA</span>
+    <span class="nome">Nome</span>
+    <span class="rg">RG</span>
+    <span class="cpf">CPF</span>
+  </div>
 
-<button mat-raised-button color="primary" routerLink="/aluno/novo">Novo Aluno</button>
+  <mat-nav-list class="lista">
+    <a mat-list-item *ngFor="let aluno of alunos" [routerLink]="['/aluno/editar', aluno.ra]"> {{aluno.ra}} | {{aluno.nome}} | {{aluno.rg}} | {{aluno.cpf}}</a>
+  </mat-nav-list>
+
+  <button mat-raised-button color="primary" routerLink="/aluno/novo">Novo Aluno</button>
 
 </div>

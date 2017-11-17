@@ -37,6 +37,7 @@ export class ListaVeiculosComponent implements OnInit {
   }
 
   filtrarVeiculo() {
+    this.filtroPlaca = this.filtroPlaca.toUpperCase();
     this.veiculos.forEach(veiculo => {
       if(veiculo.placa === this.filtroPlaca) {
         this.veiculos = [];
@@ -47,6 +48,7 @@ export class ListaVeiculosComponent implements OnInit {
 
   resetarFiltro() {
     this.lista();
+    this.filtroPlaca = '';
   }
 
 }
