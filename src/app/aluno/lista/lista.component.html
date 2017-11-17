@@ -1,7 +1,16 @@
 <div id="listaAlunos">
 
+<h2>Lista de Alunos</h2>
+
+<div class="titulo">
+  <span class="ra">RA</span>
+  <span class="nome">Nome</span>
+  <span class="rg">RG</span>
+  <span class="cpf">CPF</span>
+</div>
+
 <mat-nav-list class="lista">
-  <a mat-list-item *ngFor="let aluno of alunos" [routerLink]="['/aluno/editar', aluno.ra]"> {{aluno.ra}} {{aluno.nome}} {{aluno.rg}} {{aluno.cpf}}</a>
+  <a mat-list-item *ngFor="let aluno of alunos" [routerLink]="['/aluno/editar', aluno.ra]"> {{aluno.ra}} | {{aluno.nome}} | {{aluno.rg}} | {{aluno.cpf}}</a>
 </mat-nav-list>
 
 <button mat-raised-button color="primary" routerLink="/aluno/novo">Novo Aluno</button>

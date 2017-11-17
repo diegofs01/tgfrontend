@@ -1,50 +1,50 @@
-<h1>Cadastrar Veiculo</h1>
+<h2>Cadastrar Veiculo</h2>
 
 <form class="formNovoVeiculo">
   <mat-form-field>
-    <input matInput [textMask]="{mask: placa}" guide name="placa" type="text" placeholder="Placa" [(ngModel)]="veiculo.placa">
+    <input matInput [textMask]="{mask: placa}" guide name="placa" type="text" placeholder="Placa" [(ngModel)]="veiculo.placa" required>
     <button mat-button *ngIf="veiculo.placa" matSuffix mat-icon-button aria-label="Clear" (click)="veiculo.placa=''">
       <mat-icon>close</mat-icon>
     </button>
   </mat-form-field>
   <mat-form-field>
-    <input matInput name="marca" type="text" placeholder="Marca" [(ngModel)]="veiculo.marca">
+    <input matInput name="marca" type="text" placeholder="Marca" [(ngModel)]="veiculo.marca" required>
     <button mat-button *ngIf="veiculo.marca" matSuffix mat-icon-button aria-label="Clear" (click)="veiculo.marca=''">
       <mat-icon>close</mat-icon>
     </button>
   </mat-form-field>
   <mat-form-field>
-    <input matInput name="modelo" type="text" placeholder="Modelo" [(ngModel)]="veiculo.modelo">
+    <input matInput name="modelo" type="text" placeholder="Modelo" [(ngModel)]="veiculo.modelo" required>
     <button mat-button *ngIf="veiculo.modelo" matSuffix mat-icon-button aria-label="Clear" (click)="veiculo.modelo=''">
       <mat-icon>close</mat-icon>
     </button>
   </mat-form-field>
   <mat-form-field>
-    <input matInput name="anoModelo" type="number" placeholder="Ano do Modelo" [(ngModel)]="veiculo.anoModelo">
+    <input matInput name="anoModelo" type="number" placeholder="Ano do Modelo" [(ngModel)]="veiculo.anoModelo" required>
     <button mat-button *ngIf="veiculo.anoModelo" matSuffix mat-icon-button aria-label="Clear" (click)="veiculo.anoModelo=''">
       <mat-icon>close</mat-icon>
     </button>
   </mat-form-field>
   <mat-form-field>
-    <input matInput name="anoFabricacao" type="number" placeholder="Ano de Fabricação" [(ngModel)]="veiculo.anoFabricacao">
+    <input matInput name="anoFabricacao" type="number" placeholder="Ano de Fabricação" [(ngModel)]="veiculo.anoFabricacao" required>
     <button mat-button *ngIf="veiculo.anoFabricacao" matSuffix mat-icon-button aria-label="Clear" (click)="veiculo.anoFabricacao=''">
       <mat-icon>close</mat-icon>
     </button>
   </mat-form-field>
   <mat-form-field>
-    <input matInput name="cor" type="text" placeholder="Cor" [(ngModel)]="veiculo.cor">
+    <input matInput name="cor" type="text" placeholder="Cor" [(ngModel)]="veiculo.cor" required>
     <button mat-button *ngIf="veiculo.cor" matSuffix mat-icon-button aria-label="Clear" (click)="veiculo.cor=''">
       <mat-icon>close</mat-icon>
     </button>
   </mat-form-field>
   <mat-form-field>
-    <input matInput name="paisFabricacao" type="text" placeholder="País de Fabricação" [(ngModel)]="veiculo.paisFabricacao">
+    <input matInput name="paisFabricacao" type="text" placeholder="País de Fabricação" [(ngModel)]="veiculo.paisFabricacao" required>
     <button mat-button *ngIf="veiculo.paisFabricacao" matSuffix mat-icon-button aria-label="Clear" (click)="veiculo.paisFabricacao=''">
       <mat-icon>close</mat-icon>
     </button>
   </mat-form-field>
   <mat-form-field>
-    <input matInput name="raAluno" type="text" placeholder="RA do Aluno" [(ngModel)]="veiculo.raAluno">
+    <input matInput name="raAluno" type="text" placeholder="RA do Aluno" [(ngModel)]="veiculo.raAluno" required>
     <button mat-button *ngIf="veiculo.raAluno" matSuffix mat-icon-button aria-label="Clear" (click)="veiculo.raAluno=''">
       <mat-icon>close</mat-icon>
     </button>

@@ -11,6 +11,7 @@ import {
   MatInputModule,
   MatIconModule,
   MatSelectModule,
+  MatToolbarModule
 } from '@angular/material/';
 import { TextMaskModule } from 'angular2-text-mask';
 
@@ -76,7 +77,8 @@ import { NovoComponent as CursoNovo } from './curso/novo/novo.component';
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
-    MatSelectModule
+    MatSelectModule,
+    MatToolbarModule
   ],
   providers: [
     AlunoService,

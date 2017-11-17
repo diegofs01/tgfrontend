@@ -7,8 +7,14 @@
   <button mat-raised-button color="primary" (click)="filtrarVeiculo()">Filtar Veiculo</button>
   <button mat-raised-button color="warn" (click)="resetarFiltro()">Resetar Filtro</button>
 
+  <div class="titulo">
+    <span class="placa">Placa</span>
+    <span class="modelo">Modelo</span>
+    <span class="raAluno">RA do Aluno</span>
+  </div>
+
   <mat-nav-list class="lista">
-    <a mat-list-item *ngFor="let veiculo of veiculos" [routerLink]="['/ocorrencia/listaOcorrencia', veiculo.placa]"> {{veiculo.placa}} {{veiculo.modelo}} {{veiculo.raAluno}}</a>
+    <a mat-list-item *ngFor="let veiculo of veiculos" [routerLink]="['/ocorrencia/listaOcorrencia', veiculo.placa]"> {{veiculo.placa}} | {{veiculo.modelo}} | {{veiculo.raAluno}}</a>
   </mat-nav-list>
 
   <button mat-raised-button color="primary" [routerLink]="['/ocorrencia/novo', 'semPlaca', '']">Nova Ocorrencia</button>

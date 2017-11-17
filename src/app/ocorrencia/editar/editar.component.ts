@@ -28,11 +28,12 @@ export class EditarComponent implements OnInit {
     this.sub = this.route.params.subscribe(params => {
       this.ocorrenciaService.buscar(params['placa'], params['data'], params['hora']).subscribe(response => {
         this.ocorrencia = response.json();
+
+        this.tipoOcorrenciaService.lista().subscribe(response => {
+          this.tiposOcorrencias = response.json();
+          this.ocorrencia.tipoOcorrencia = this.tiposOcorrencias.find(to => to.id === this.ocorrencia.tipoOcorrencia.id);
+        });
       });
-    });
-    this.tipoOcorrenciaService.lista().subscribe(response => {
-      this.tiposOcorrencias = response.json();
-      this.ocorrencia.tipoOcorrencia = this.tiposOcorrencias.find(to => to.id === this.ocorrencia.tipoOcorrencia.id);
     });
   }
 

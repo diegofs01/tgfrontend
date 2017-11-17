@@ -1,0 +1,19 @@
+.titulo {
+    font-family: Roboto,"Helvetica Neue",sans-serif;
+}
+
+.placa {
+    margin: 30px;
+}
+
+.data {
+    margin: 15px;
+}
+
+.hora {
+    margin: 35px;
+}
+
+.descricao {
+    margin: 40px;
+}

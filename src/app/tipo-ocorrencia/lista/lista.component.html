@@ -1,7 +1,14 @@
 <div id="listaTiposOcorrencias">
 
+  <h2>Tipos de Ocorrências</h2>
+
+  <div class="titulo">
+    <span class="id">ID</span>
+    <span class="descricao">Descrição</span>
+  </div>
+      
   <mat-nav-list class="lista">
-    <a mat-list-item *ngFor="let tipoOcorrencia of tiposOcorrencias" [routerLink]="['/tipoOcorrencia/editar', tipoOcorrencia.id]"> {{tipoOcorrencia.id}} {{tipoOcorrencia.nome}}</a>
+    <a mat-list-item *ngFor="let tipoOcorrencia of tiposOcorrencias" [routerLink]="['/tipoOcorrencia/editar', tipoOcorrencia.id]"> {{tipoOcorrencia.id}} | {{tipoOcorrencia.nome}}</a>
   </mat-nav-list>
   
   <button mat-raised-button color="primary" routerLink="/tipoOcorrencia/novo">Novo Tipo de Ocorrencia</button>

@@ -1,4 +1,4 @@
-<h1>Editar Aluno {{aluno.nome}}</h1>
+<h2>Editar Aluno: {{aluno.nome}}</h2>
 
 <form class="formEditarAluno">
   <mat-form-field>
@@ -6,35 +6,35 @@
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput name="Nome" type="text" placeholder="Nome" [(ngModel)]="aluno.nome">
+    <input matInput name="Nome" type="text" placeholder="Nome" [(ngModel)]="aluno.nome" required>
     <button mat-button *ngIf="aluno.nome" matSuffix mat-icon-button aria-label="Clear" (click)="aluno.nome=''">
       <mat-icon>close</mat-icon>
     </button>
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput [textMask]="{mask: rg}" guide name="RG" type="text" placeholder="RG" [(ngModel)]="aluno.rg">
+    <input matInput [textMask]="{mask: rg}" guide name="RG" type="text" placeholder="RG" [(ngModel)]="aluno.rg" required>
     <button mat-button *ngIf="aluno.rg" matSuffix mat-icon-button aria-label="Clear" (click)="aluno.rg=''">
       <mat-icon>close</mat-icon>
     </button>
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput [textMask]="{mask: cpf}" guide name="CPF" type="text" placeholder="CPF" [(ngModel)]="aluno.cpf">
+    <input matInput [textMask]="{mask: cpf}" guide name="CPF" type="text" placeholder="CPF" [(ngModel)]="aluno.cpf" required>
     <button mat-button *ngIf="aluno.cpf" matSuffix mat-icon-button aria-label="Clear" (click)="aluno.cpf=''">
       <mat-icon>close</mat-icon>
     </button>
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput name="Endereco" type="text" placeholder="Endereço" [(ngModel)]="aluno.endereco">
+    <input matInput name="Endereco" type="text" placeholder="Endereço" [(ngModel)]="aluno.endereco" required>
     <button mat-button *ngIf="aluno.endereco" matSuffix mat-icon-button aria-label="Clear" (click)="aluno.endereco=''">
       <mat-icon>close</mat-icon>
     </button>
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput name="Numero" type="number" placeholder="Numero" [(ngModel)]="aluno.numero">
+    <input matInput name="Numero" type="number" placeholder="Numero" [(ngModel)]="aluno.numero" required>
     <button mat-button *ngIf="aluno.numero" matSuffix mat-icon-button aria-label="Clear" (click)="aluno.numero=''">
       <mat-icon>close</mat-icon>
     </button>
@@ -48,21 +48,21 @@
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput name="Bairro" type="text" placeholder="Bairro" [(ngModel)]="aluno.bairro">
+    <input matInput name="Bairro" type="text" placeholder="Bairro" [(ngModel)]="aluno.bairro" required>
     <button mat-button *ngIf="aluno.bairro" matSuffix mat-icon-button aria-label="Clear" (click)="aluno.bairro=''">
       <mat-icon>close</mat-icon>
     </button>
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput name="Cidade" type="text" placeholder="Cidade" [(ngModel)]="aluno.cidade">
+    <input matInput name="Cidade" type="text" placeholder="Cidade" [(ngModel)]="aluno.cidade" required>
     <button mat-button *ngIf="aluno.cidade" matSuffix mat-icon-button aria-label="Clear" (click)="aluno.cidade=''">
       <mat-icon>close</mat-icon>
     </button>
   </mat-form-field>
 
   <mat-form-field>
-    <mat-select name="Estado" placeholder="Estado" [(ngModel)]="aluno.estado" >
+    <mat-select name="Estado" placeholder="Estado" [(ngModel)]="aluno.estado" required>
       <mat-option *ngFor="let estado of estados" [value]="estado">
         {{estado}}
       </mat-option>
@@ -70,7 +70,7 @@
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput [textMask]="{mask: cep}" guide name="CEP" type="text" placeholder="Cep" [(ngModel)]="aluno.cep">
+    <input matInput [textMask]="{mask: cep}" guide name="CEP" type="text" placeholder="Cep" [(ngModel)]="aluno.cep" required>
     <button mat-button *ngIf="aluno.cep" matSuffix mat-icon-button aria-label="Clear" (click)="aluno.cep=''">
       <mat-icon>close</mat-icon>
     </button>
@@ -98,7 +98,7 @@
   </mat-form-field>
 
   <mat-form-field>
-    <mat-select name="Curso" placeholder="Curso" [(ngModel)]="aluno.idCurso" >
+    <mat-select name="Curso" placeholder="Curso" [(ngModel)]="aluno.idCurso" required>
       <mat-option *ngFor="let curso of cursos" [value]="curso.id">
         {{curso.nome}}
       </mat-option>

@@ -14,11 +14,11 @@
   </mat-form-field>
 
   <mat-form-field>
-    <textarea matInput name="descricao" placeholder="Descrição da Ocorrencia" [(ngModel)]="ocorrencia.descricao"></textarea>
+    <textarea matInput name="descricao" placeholder="Descrição da Ocorrencia" [(ngModel)]="ocorrencia.descricao" required></textarea>
   </mat-form-field>
 
   <mat-form-field>
-    <mat-select name="TipoOcorrencia" placeholder="Tipo de Ocorrencia" [(ngModel)]="ocorrencia.tipoOcorrencia" >
+    <mat-select name="TipoOcorrencia" placeholder="Tipo de Ocorrencia" [(ngModel)]="ocorrencia.tipoOcorrencia" required>
       <mat-option *ngFor="let tipoOcorrencia of tiposOcorrencias" [value]="tipoOcorrencia">
         {{tipoOcorrencia.nome}}
       </mat-option>

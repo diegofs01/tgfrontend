@@ -39,4 +39,10 @@ export class ListaOcorrenciaComponent implements OnInit {
     });
   }
 
+  formataHora(ocorrencia: Ocorrencia) {
+    let tempData = new Date(ocorrencia.data);
+    tempData.setDate(tempData.getDate() + 1);
+    return tempData.toLocaleDateString();
+  }
+
 }
