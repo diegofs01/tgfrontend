@@ -22,12 +22,10 @@ export class NovoComponent implements OnInit {
     }
   
     salvar() {
-      console.log(this.cursoService);
       this.cursoService.save(this.curso)
       .subscribe(response => {
-        console.log(response.json());
+        this.router.navigate(['/curso/lista']);
       });
-      this.router.navigate(['/curso/lista']);
     }
   
     limparCampos() {

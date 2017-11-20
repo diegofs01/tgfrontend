@@ -27,10 +27,8 @@ export class NovoComponent implements OnInit {
   }
 
   salvar() {
-    console.log(this.tipoOcorrencia);
     this.tipoOcorrenciaService.save(this.tipoOcorrencia)
     .subscribe(response => {
-      console.log(response.json());
       this.router.navigate(['/tipoOcorrencia/lista']);
     });
   }

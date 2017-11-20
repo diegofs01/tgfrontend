@@ -29,9 +29,7 @@ export class ListaComponent implements OnInit {
   }
 
   save() {
-    this.alunoService.save(this.aluno).subscribe(response => {
-      console.log(response.json());
-    });
+    this.alunoService.save(this.aluno);
   }
 
   filtrarAluno() {

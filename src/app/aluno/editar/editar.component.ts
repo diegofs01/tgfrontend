@@ -64,16 +64,14 @@ export class EditarComponent implements OnInit, OnDestroy {
     console.log(this.aluno);
     this.alunoService.alterar(this.aluno, this.aluno.ra)
     .subscribe(response => {
-      console.log(response.json());
+      this.router.navigate(['/aluno/lista']);
     });
-    this.router.navigate(['/aluno/lista']);
   }
 
   excluir() {
     this.alunoService.excluir(this.aluno.ra)
     .subscribe(response => {
-      console.log(response.json());
+      this.router.navigate(['/aluno/lista']);
     });
-    this.router.navigate(['/aluno/lista']);
   }
 }

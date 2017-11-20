@@ -42,20 +42,17 @@ export class EditarComponent implements OnInit, OnDestroy {
   }
 
   salvar() {
-    console.log(this.veiculo);
     this.veiculoService.alterar(this.veiculo, this.veiculo.placa)
     .subscribe(response => {
-      console.log(response.json());
+      this.router.navigate(['/veiculo/lista']);
     });
-    this.router.navigate(['/veiculo/lista']);
   }
 
   excluir() {
     this.veiculoService.excluir(this.veiculo.placa)
     .subscribe(response => {
-      console.log(response.json());
+      this.router.navigate(['/veiculo/lista']);
     });
-    this.router.navigate(['/veiculo/lista']);
   }
 
 }

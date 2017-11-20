@@ -40,17 +40,15 @@ export class EditarComponent implements OnInit {
   salvar() {
     this.ocorrenciaService.alterar(this.ocorrencia, this.ocorrencia.placaVeiculo)
     .subscribe(response => {
-      console.log(response.json());
+      this.router.navigate(['/ocorrencia/listaOcorrencia', this.ocorrencia.placaVeiculo]);
     });
-    this.router.navigate(['/ocorrencia/listaOcorrencia', this.ocorrencia.placaVeiculo]);
   }
 
   excluir() {
     this.ocorrenciaService.excluir(this.ocorrencia)
     .subscribe(response => {
-      console.log(response.json());
+      this.router.navigate(['/ocorrencia/listaOcorrencia', this.ocorrencia.placaVeiculo]);
     });
-    this.router.navigate(['/ocorrencia/listaOcorrencia', this.ocorrencia.placaVeiculo]);
   }
 
 }

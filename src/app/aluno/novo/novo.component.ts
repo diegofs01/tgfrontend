@@ -51,9 +51,8 @@ export class NovoComponent implements OnInit {
     console.log(this.aluno);
     this.alunoService.save(this.aluno)
     .subscribe(response => {
-      console.log(response.json());
+      this.router.navigate(['/aluno/lista']);
     });
-    this.router.navigate(['/aluno/lista']);
   }
 
   limparCampos() {

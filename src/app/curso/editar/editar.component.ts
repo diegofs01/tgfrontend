@@ -33,10 +33,8 @@ export class EditarComponent implements OnInit {
   }
 
   salvar() {
-    console.log(this.curso);
     this.cursoService.alterar(this.curso, this.curso.id)
     .subscribe(response => {
-      console.log(response.json());
       this.router.navigate(['/curso/lista']);
     });
   }
@@ -44,7 +42,6 @@ export class EditarComponent implements OnInit {
   excluir() {
     this.cursoService.excluir(this.curso.id)
     .subscribe(response => {
-      console.log(response.json());
       this.router.navigate(['/curso/lista']);
     });
   }

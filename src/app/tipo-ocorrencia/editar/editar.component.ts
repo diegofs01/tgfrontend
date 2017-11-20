@@ -38,20 +38,17 @@ export class EditarComponent implements OnInit, OnDestroy {
   }
 
   salvar() {
-    console.log(this.tipoOcorrencia);
     this.tipoOcorrenciaService.alterar(this.tipoOcorrencia, this.tipoOcorrencia.id)
     .subscribe(response => {
-      console.log(response.json());
+      this.router.navigate(['/tipoOcorrencia/lista']);
     });
-    this.router.navigate(['/tipoOcorrencia/lista']);
   }
 
   excluir() {
     this.tipoOcorrenciaService.excluir(this.tipoOcorrencia.id)
     .subscribe(response => {
-      console.log(response.json());
+      this.router.navigate(['/tipoOcorrencia/lista']);
     });
-    this.router.navigate(['/tipoOcorrencia/lista']);
   }
 
 }

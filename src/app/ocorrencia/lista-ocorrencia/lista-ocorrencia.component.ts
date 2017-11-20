@@ -29,7 +29,6 @@ export class ListaOcorrenciaComponent implements OnInit {
       this.placa = params['placa'];
       this.ocorrenciaService.listarByPlaca(this.placa).subscribe(response => {
         this.ocorrencias = response.json();
-        console.log(this.ocorrencias.length);
         if(this.ocorrencias.length > 0) {
           this.listaVazia = false;
         } else {

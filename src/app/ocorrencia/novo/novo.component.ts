@@ -46,7 +46,6 @@ export class NovoComponent implements OnInit {
         this.ocorrencia.placaVeiculo = '';
         this.paginaAnterior = 'listaVeiculo';
       }
-      console.log(this.paginaAnterior);
     });
     this.tipoOcorrenciaService.lista().subscribe(response => {
       this.tiposOcorrencias = response.json();
@@ -54,11 +53,8 @@ export class NovoComponent implements OnInit {
   }
 
   salvar() {
-    console.log(this.ocorrencia);
-
     this.ocorrenciaService.save(this.ocorrencia)
     .subscribe(response => {
-      console.log(response.json());
       this.voltar();
     });
   }
