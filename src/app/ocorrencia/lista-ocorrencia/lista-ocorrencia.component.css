@@ -1,4 +1,5 @@
 .titulo {
+    margin-top: 25px;
     font-family: Roboto,"Helvetica Neue",sans-serif;
 }
 
@@ -16,4 +17,9 @@
 
 .descricao {
     margin: 40px;
+}
+
+.espacamento {
+    margin-top: 10px;
+    margin-bottom: 10px;
 }

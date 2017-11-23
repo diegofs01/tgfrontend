@@ -52,7 +52,7 @@ const routes: Routes = [
     component: OcorrenciaListaVeiculos
   },
   {
-    path: 'ocorrencia/listaOcorrencia/:placa',
+    path: 'ocorrencia/listaOcorrencia',
     component: OcorrenciaLista
   },
   {

@@ -1,6 +1,49 @@
 <div id="listaOcorrencia">
   
-  <h2>Lista de Ocorrencias do Veículo: {{ placa }}</h2>
+  <h2>Lista de Ocorrencias</h2>
+
+  <mat-nav-list>
+    <p>Filtro de Ocorrencias:</p>
+    <mat-select name="TipoFiltro" placeholder="Filtro" [(ngModel)]="filtro">
+      <mat-option *ngFor="let tf of tiposFiltro" [value]="tf.valor">{{tf.nome}}</mat-option>
+    </mat-select>
+  </mat-nav-list>
+
+  <div *ngIf="filtro === 'periodo'">
+    <mat-nav-list>
+      <input matInput name="dataInicial" type="date" placeholder="Data Inicial" [(ngModel)]="periodoInicial">
+      <input matInput name="dataFinal" type="date" placeholder="Data Final" [(ngModel)]="periodoFinal">
+      <button mat-raised-button (click)="filtrarOcorrenciasByPeriodo()" color="primary">Consultar</button>
+      <button mat-raised-button (click)="listarVeiculos()" color="warn">Resetar</button>
+    </mat-nav-list>
+  </div>
+
+  <div *ngIf="filtro === 'tipoOcorrencia'">
+    <mat-nav-list>
+      <mat-select name="TipoOcorrencia" placeholder="Tipo Filtro" [(ngModel)]="idTipo" (change)="filtrarOcorrenciasByTipo(idTipo)" class="espacamento">
+        <mat-option *ngFor="let tipoOcorrencia of tiposOcorrencias" [value]="tipoOcorrencia.id">
+          {{tipoOcorrencia.nome}}
+        </mat-option>
+      </mat-select>
+      <button mat-raised-button (click)="listarVeiculos()" color="warn">Resetar</button>
+    </mat-nav-list>
+  </div>
+
+  <div *ngIf="filtro === 'veiculo'">
+    <mat-nav-list>
+      <input matInput [textMask]="{mask: placaVeiculo}" guide [(ngModel)]="placa" type="text" placeholder="AAA-9999">
+      <button mat-raised-button (click)="consultarVeiculo()" color="primary">Consultar</button>
+      <button mat-raised-button (click)="listarVeiculos()" color="warn">Resetar</button>
+    </mat-nav-list>
+  </div>
+
+  <div *ngIf="filtro === 'aluno'">
+    <mat-nav-list>
+      <input [(ngModel)]="ra" type="text" placeholder="RA do Aluno">
+      <button mat-raised-button (click)="filtrarOcorrenciasByRA()" color="primary">Consultar</button>
+      <button mat-raised-button (click)="listarVeiculos()" color="warn">Resetar</button>
+    </mat-nav-list>
+  </div>
 
   <div class="titulo">
     <span class="placa">Placa</span>
@@ -14,8 +57,10 @@
   </mat-nav-list>
 
   <p *ngIf="listaVazia">Nenhuma Ocorencia Cadastrada</p>
+
+  <button mat-raised-button color="primary" [routerLink]="['/ocorrencia/novo', 'semPlaca', '']">Nova Ocorrencia</button>
   
-  <button mat-raised-button color="primary" [routerLink]="['/ocorrencia/novo', 'comPlaca', placa]">Nova Ocorrencia</button>
-  <button mat-raised-button [routerLink]="['/ocorrencia/listaVeiculos']">Voltar</button>
+  <!-- <button mat-raised-button color="primary" [routerLink]="['/ocorrencia/novo', 'comPlaca', placa]">Nova Ocorrencia</button>
+  <button mat-raised-button [routerLink]="['/ocorrencia/listaVeiculos']">Voltar</button> -->
   
   </div>

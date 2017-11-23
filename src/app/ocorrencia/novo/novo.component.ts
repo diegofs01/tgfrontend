@@ -68,7 +68,7 @@ export class NovoComponent implements OnInit {
     if(this.paginaAnterior === 'listaOcorrencia') {
       this.router.navigate(['/ocorrencia/listaOcorrencia', this.placa]);
     } else {
-      this.router.navigate(['/ocorrencia/listaVeiculos']);
+      this.router.navigate(['/ocorrencia/listaOcorrencia']);
     }
   }
 
