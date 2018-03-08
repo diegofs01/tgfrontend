@@ -141,4 +141,11 @@ export class ListaOcorrenciaComponent implements OnInit {
       this.ocorrencias = [];
     }
   }
+
+  excluirOcorrencia(ocorrencia) {
+    this.ocorrenciaService.excluir(ocorrencia)
+    .subscribe(response => {
+      window.location.reload();
+    });
+  }
 }

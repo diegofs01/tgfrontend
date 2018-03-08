@@ -2,14 +2,31 @@
 
   <h2>Tipos de Ocorrências</h2>
 
-  <div class="titulo">
+  <!-- <div class="titulo">
     <span class="id">ID</span>
     <span class="descricao">Descrição</span>
   </div>
       
   <mat-nav-list class="lista">
     <a mat-list-item *ngFor="let tipoOcorrencia of tiposOcorrencias" [routerLink]="['/tipoOcorrencia/editar', tipoOcorrencia.id]"> {{tipoOcorrencia.id}} | {{tipoOcorrencia.nome}}</a>
-  </mat-nav-list>
+  </mat-nav-list> -->
+
+  <table>
+    <tr class="titulo">
+      <td>ID</td>
+      <td>Descrição</td>
+    </tr>
+    <tr *ngFor="let tipoOcorrencia of tiposOcorrencias">
+      <td>{{tipoOcorrencia.id}}</td>
+      <td>{{tipoOcorrencia.nome}}</td>
+      <button mat-icon-button [routerLink]="['/tipoOcorrencia/editar', tipoOcorrencia.id]">
+        <mat-icon aria-label="Editar TipoOcorrencia">edit</mat-icon>
+      </button>
+      <button mat-icon-button (click)="excluirTipoOcorrencia(tipoOcorrencia.id)">
+        <mat-icon aria-label="Excluir TipoOcorrencia">delete</mat-icon>
+      </button>
+    </tr>
+  </table>
   
   <button mat-raised-button color="primary" routerLink="/tipoOcorrencia/novo">Novo Tipo de Ocorrencia</button>
   

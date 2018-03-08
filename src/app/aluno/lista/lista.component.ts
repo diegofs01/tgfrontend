@@ -45,4 +45,11 @@ export class ListaComponent implements OnInit {
     this.lista();
     this.filtroAluno = '';
   }
+
+  excluirAluno(ra) {
+    this.alunoService.excluir(ra)
+    .subscribe(response => {
+      window.location.reload();
+    });
+  }
 }

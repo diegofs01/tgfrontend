@@ -2,14 +2,31 @@
 
   <h2>Lista de Cursos</h2>
 
-  <div class="titulo">
+  <!-- <div class="titulo">
     <span class="id">ID</span>
     <span class="descricao">Descrição</span>
-  </div>
+  </div> -->
     
-  <mat-nav-list class="lista">
+  <!-- <mat-nav-list class="lista">
     <a mat-list-item *ngFor="let curso of cursos" [routerLink]="['/curso/editar', curso.id]"> {{curso.id}} | {{curso.nome}}</a>
-  </mat-nav-list>
+  </mat-nav-list> -->
+
+  <table>
+    <tr class="titulo">
+      <td>ID</td>
+      <td>Descrição</td>
+    </tr>
+    <tr *ngFor="let curso of cursos">
+      <td>{{curso.id}}</td>
+      <td>{{curso.nome}}</td>
+      <button mat-icon-button [routerLink]="['/curso/editar', curso.id]">
+        <mat-icon aria-label="Editar Curso">edit</mat-icon>
+      </button>
+      <button mat-icon-button (click)="excluirCurso(curso.id)">
+        <mat-icon aria-label="Excluir Curso">delete</mat-icon>
+      </button>
+    </tr>
+  </table>
       
   <button mat-raised-button color="primary" routerLink="/curso/novo">Novo Curso</button>
       

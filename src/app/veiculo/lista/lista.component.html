@@ -8,7 +8,7 @@
   <button mat-raised-button color="primary" (click)="filtrarVeiculo()">Filtar Veiculo</button>
   <button mat-raised-button color="warn" (click)="resetarFiltro()">Resetar Filtro</button>
     
-  <div class="titulo">
+  <!-- <div class="titulo">
     <span class="placa">Placa</span>
     <span class="modelo">Modelo</span>
     <span class="raAluno">RA do Aluno</span>
@@ -16,7 +16,26 @@
   
   <mat-nav-list class="lista">
     <a mat-list-item *ngFor="let veiculo of veiculos" [routerLink]="['/veiculo/editar', veiculo.placa]"> {{veiculo.placa}} | {{veiculo.modelo}} | {{veiculo.raAluno}}</a>
-  </mat-nav-list>
+  </mat-nav-list> -->
+
+  <table>
+    <tr class="titulo">
+      <td>Placa</td>
+      <td>Modelo</td>
+      <td>RA do Aluno</td>
+    </tr>
+    <tr *ngFor="let veiculo of veiculos">
+      <td>{{veiculo.placa}}</td>
+      <td>{{veiculo.modelo}}</td>
+      <td>{{veiculo.raAluno}}</td>
+      <button mat-icon-button [routerLink]="['/veiculo/editar', veiculo.placa]">
+        <mat-icon aria-label="Editar Veiculo">edit</mat-icon>
+      </button>
+      <button mat-icon-button (click)="excluirVeiculo(veiculo.placa)">
+        <mat-icon aria-label="Excluir Veiculo">delete</mat-icon>
+      </button>
+    </tr>
+  </table>
   
   <button mat-raised-button color="primary" routerLink="/veiculo/novo">Novo Veiculo</button>
   

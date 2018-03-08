@@ -27,4 +27,10 @@ export class ListaComponent implements OnInit {
     });
   }
 
+  excluirTipoOcorrencia(id) {
+    this.tipoOcorrenciaService.excluir(id)
+    .subscribe(response => {
+      window.location.reload();
+    });
+  }
 }

@@ -8,7 +8,7 @@
   <button mat-raised-button color="primary" (click)="filtrarAluno()">Filtar Aluno</button>
   <button mat-raised-button color="warn" (click)="resetarFiltro()">Resetar Filtro</button>
 
-  <div class="titulo">
+  <!-- <div class="titulo">
     <span class="ra">RA</span>
     <span class="nome">Nome</span>
     <span class="rg">RG</span>
@@ -17,7 +17,28 @@
 
   <mat-nav-list class="lista">
     <a mat-list-item *ngFor="let aluno of alunos" [routerLink]="['/aluno/editar', aluno.ra]"> {{aluno.ra}} | {{aluno.nome}} | {{aluno.rg}} | {{aluno.cpf}}</a>
-  </mat-nav-list>
+  </mat-nav-list> -->
+
+  <table>
+    <tr class="titulo">
+      <td>RA</td>
+      <td>Nome</td>
+      <td>RG</td>
+      <td>CPF</td>
+    </tr>
+    <tr *ngFor= "let aluno of alunos">
+      <td>{{aluno.ra}}</td>
+      <td>{{aluno.nome}}</td>
+      <td>{{aluno.rg}}</td>
+      <td>{{aluno.cpf}}</td>
+      <button mat-icon-button [routerLink]="['/aluno/editar', aluno.ra]">
+        <mat-icon aria-label="Editar Aluno">edit</mat-icon>
+      </button>
+      <button mat-icon-button (click)="excluirAluno(aluno.ra)">
+        <mat-icon aria-label="Excluir ALuno">delete</mat-icon>
+      </button>
+    </tr>
+  </table>
 
   <button mat-raised-button color="primary" routerLink="/aluno/novo">Novo Aluno</button>
 

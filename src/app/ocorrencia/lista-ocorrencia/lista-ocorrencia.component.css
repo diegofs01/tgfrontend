@@ -1,6 +1,12 @@
 .titulo {
-    margin-top: 25px;
     font-family: Roboto,"Helvetica Neue",sans-serif;
+    text-align: center;
+    font-weight: bold;
+}
+
+table {
+    font-family: Roboto,"Helvetica Neue",sans-serif;
+    border: 10px;
 }
 
 .placa {

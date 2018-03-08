@@ -11,19 +11,25 @@ export class ListaComponent implements OnInit {
 
   public cursos: Curso[];
   
-    constructor(
-      private cursoService: CursoService
-    ) { }
-  
-    ngOnInit() {
-      this.cursos = [];
-      this.lista();
-    }
-  
-    lista() {
-      this.cursoService.lista().subscribe(response => {
-        this.cursos = response.json();
-      });
-    }
+  constructor(
+    private cursoService: CursoService
+  ) { }
 
+  ngOnInit() {
+    this.cursos = [];
+    this.lista();
+  }
+
+  lista() {
+    this.cursoService.lista().subscribe(response => {
+      this.cursos = response.json();
+    });
+  }
+
+  excluirCurso(id) {
+    this.cursoService.excluir(id)
+    .subscribe(response => {
+      window.location.reload();
+    });
+  }
 }

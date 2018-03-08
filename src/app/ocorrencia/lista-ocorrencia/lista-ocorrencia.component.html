@@ -45,7 +45,7 @@
     </mat-nav-list>
   </div>
 
-  <div class="titulo">
+  <!-- <div class="titulo">
     <span class="placa">Placa</span>
     <span class="data">Data</span>
     <span class="hora">Hora</span>
@@ -54,7 +54,28 @@
 
   <mat-nav-list class="lista">
     <a mat-list-item *ngFor="let ocorrencia of ocorrencias" [routerLink]="['/ocorrencia/editar', ocorrencia.placaVeiculo, ocorrencia.data, ocorrencia.hora]"> {{ocorrencia.placaVeiculo}} | {{formataHora(ocorrencia)}} | {{ocorrencia.hora}} | {{ocorrencia.descricao}}</a>
-  </mat-nav-list>
+  </mat-nav-list> -->
+
+  <table *ngIf="!listaVazia">
+    <tr class="titulo">
+      <td>Placa</td>
+      <td>Data</td>
+      <td>Hora</td>
+      <td>Descrição</td>
+    </tr>
+    <tr *ngFor="let ocorrencia of ocorrencias">
+      <td>{{ocorrencia.placaVeiculo}}</td>
+      <td>{{formataHora(ocorrencia)}}</td>
+      <td>{{ocorrencia.hora}}</td>
+      <td>{{ocorrencia.descricao}}</td>
+      <button mat-icon-button [routerLink]="['/ocorrencia/editar', ocorrencia.placaVeiculo, ocorrencia.data, ocorrencia.hora]">
+        <mat-icon aria-label="Editar Ocorrencia">edit</mat-icon>
+      </button>
+      <button mat-icon-button (click)="excluirOcorrencia(ocorrencia)">
+        <mat-icon aria-label="Excluir Ocorrencia">delete</mat-icon>
+      </button>
+    </tr>
+  </table>
 
   <p *ngIf="listaVazia">Nenhuma Ocorencia Cadastrada</p>
 

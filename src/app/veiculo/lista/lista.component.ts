@@ -45,4 +45,10 @@ export class ListaComponent implements OnInit {
     this.filtroPlaca = '';
   }
   
+  excluirVeiculo(placa) {
+    this.veiculoService.excluir(placa)
+    .subscribe(response => {
+      window.location.reload();
+    });
+  }
 }
