@@ -11,10 +11,12 @@
 
   <div *ngIf="filtro === 'periodo'">
     <mat-nav-list>
-      <input matInput name="dataInicial" type="date" placeholder="Data Inicial" [(ngModel)]="periodoInicial">
-      <input matInput name="dataFinal" type="date" placeholder="Data Final" [(ngModel)]="periodoFinal">
+      <p>
+      Data Inicial: <input matInput name="dataInicial" type="date" placeholder="Data Inicial" [(ngModel)]="periodoInicial"> 
+      Data Final: <input matInput name="dataFinal" type="date" placeholder="Data Final" [(ngModel)]="periodoFinal">
       <button mat-raised-button (click)="filtrarOcorrenciasByPeriodo()" color="primary">Consultar</button>
       <button mat-raised-button (click)="listarVeiculos()" color="warn">Resetar</button>
+      </p>
     </mat-nav-list>
   </div>
 
@@ -31,7 +33,7 @@
 
   <div *ngIf="filtro === 'veiculo'">
     <mat-nav-list>
-      <input matInput [textMask]="{mask: placaVeiculo}" guide [(ngModel)]="placa" type="text" placeholder="AAA-9999">
+      <input [textMask]="{mask: placaVeiculo}" guide [(ngModel)]="placa" type="text" placeholder="AAA-9999">
       <button mat-raised-button (click)="consultarVeiculo()" color="primary">Consultar</button>
       <button mat-raised-button (click)="listarVeiculos()" color="warn">Resetar</button>
     </mat-nav-list>
