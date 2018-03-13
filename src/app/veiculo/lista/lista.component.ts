@@ -32,9 +32,12 @@ export class ListaComponent implements OnInit {
 
   filtrarVeiculo() {
     this.filtroPlaca = this.filtroPlaca.toUpperCase();
-    this.veiculos.forEach(veiculo => {
+    console.log(this.filtroPlaca);
+    let tempList = this.veiculos;
+    this.veiculos = [];
+    tempList.forEach(veiculo => {
+      console.log(veiculo.placa);
       if(veiculo.placa === this.filtroPlaca) {
-        this.veiculos = [];
         this.veiculos.push(veiculo);
       }
     });
