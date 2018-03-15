@@ -70,7 +70,7 @@ export class ListaOcorrenciaComponent implements OnInit {
     this.idTipo = 0;
   }
 
-  formataHora(ocorrencia: Ocorrencia) {
+  formataData(ocorrencia: Ocorrencia) {
     let tempData = new Date(ocorrencia.data);
     tempData.setDate(tempData.getDate() + 1);
     return tempData.toLocaleDateString();

@@ -32,7 +32,6 @@ import { ListaComponent as VeiculoLista } from './veiculo/lista/lista.component'
 import { NovoComponent as VeiculoNovo } from './veiculo/novo/novo.component';
 import { EditarComponent as VeiculoEditar } from './veiculo/editar/editar.component';
 
-import { ListaVeiculosComponent as OcorrenciaListaVeiculos } from './ocorrencia/lista-veiculos/lista-veiculos.component';
 import { ListaOcorrenciaComponent as OcorrenciaLista } from './ocorrencia/lista-ocorrencia/lista-ocorrencia.component';
 import { NovoComponent as OcorrenciaNovo } from './ocorrencia/novo/novo.component';
 import { EditarComponent as OcorrenciaEditar } from './ocorrencia/editar/editar.component';
@@ -54,7 +53,6 @@ import { NovoComponent as CursoNovo } from './curso/novo/novo.component';
     VeiculoLista,
     VeiculoNovo,
     VeiculoEditar,
-    OcorrenciaListaVeiculos,
     OcorrenciaLista,
     OcorrenciaNovo,
     OcorrenciaEditar,

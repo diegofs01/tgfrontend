@@ -47,27 +47,16 @@
     </mat-nav-list>
   </div>
 
-  <!-- <div class="titulo">
-    <span class="placa">Placa</span>
-    <span class="data">Data</span>
-    <span class="hora">Hora</span>
-    <span class="descricao">Descrição</span>
-  </div>
-
-  <mat-nav-list class="lista">
-    <a mat-list-item *ngFor="let ocorrencia of ocorrencias" [routerLink]="['/ocorrencia/editar', ocorrencia.placaVeiculo, ocorrencia.data, ocorrencia.hora]"> {{ocorrencia.placaVeiculo}} | {{formataHora(ocorrencia)}} | {{ocorrencia.hora}} | {{ocorrencia.descricao}}</a>
-  </mat-nav-list> -->
-
   <table *ngIf="!listaVazia">
     <tr class="titulo">
       <td>Placa</td>
       <td>Data</td>
       <td>Hora</td>
-      <td>Descrição</td>
+      <td>Detalhamento</td>
     </tr>
     <tr *ngFor="let ocorrencia of ocorrencias">
       <td>{{ocorrencia.placaVeiculo}}</td>
-      <td>{{formataHora(ocorrencia)}}</td>
+      <td>{{formataData(ocorrencia)}}</td>
       <td>{{ocorrencia.hora}}</td>
       <td>{{ocorrencia.descricao}}</td>
       <button mat-icon-button [routerLink]="['/ocorrencia/editar', ocorrencia.placaVeiculo, ocorrencia.data, ocorrencia.hora]">
@@ -81,9 +70,6 @@
 
   <p *ngIf="listaVazia">Nenhuma Ocorencia Cadastrada</p>
 
-  <button mat-raised-button color="primary" [routerLink]="['/ocorrencia/novo', 'semPlaca', '']">Nova Ocorrencia</button>
+  <button mat-raised-button color="primary" routerLink="/ocorrencia/novo">Nova Ocorrencia</button>
   
-  <!-- <button mat-raised-button color="primary" [routerLink]="['/ocorrencia/novo', 'comPlaca', placa]">Nova Ocorrencia</button>
-  <button mat-raised-button [routerLink]="['/ocorrencia/listaVeiculos']">Voltar</button> -->
-  
-  </div>
+</div>

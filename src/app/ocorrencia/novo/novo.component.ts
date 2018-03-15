@@ -36,17 +36,6 @@ export class NovoComponent implements OnInit {
 
   ngOnInit() {
     this.ocorrencia = {} as Ocorrencia;
-    this.sub = this.route.params.subscribe(params => {
-      if(params['tipo'] === 'comPlaca') {
-        this.placa = params['placa'];
-        this.ocorrencia.placaVeiculo = this.placa;
-        this.paginaAnterior = 'listaOcorrencia';
-      } else {
-        this.placa = '';
-        this.ocorrencia.placaVeiculo = '';
-        this.paginaAnterior = 'listaVeiculo';
-      }
-    });
     this.tipoOcorrenciaService.lista().subscribe(response => {
       this.tiposOcorrencias = response.json();
     });
@@ -65,11 +54,7 @@ export class NovoComponent implements OnInit {
   }
 
   voltar() {
-    if(this.paginaAnterior === 'listaOcorrencia') {
-      this.router.navigate(['/ocorrencia/listaOcorrencia', this.placa]);
-    } else {
-      this.router.navigate(['/ocorrencia/listaOcorrencia']);
-    }
+    this.router.navigate(['/ocorrencia/listaOcorrencia']);
   }
 
 }
