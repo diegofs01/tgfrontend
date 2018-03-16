@@ -24,24 +24,24 @@ export class OcorrenciaService {
     return this.http.get(environment.apiUrl + 'ocorrencia');
   }
 
-  buscar(placa: string, data: Date, hora: Date) {
-    return this.http.get(environment.apiUrl + 'ocorrencia/' + placa + '?data=' + data + '&hora=' + hora);
+  buscar(numero: number) {
+    return this.http.get(environment.apiUrl + 'ocorrencia/' + numero);
   }
 
-  alterar(ocorrencia: Ocorrencia, placa: string) {
+  alterar(ocorrencia: Ocorrencia, numero: number) {
 
     let tempData = new Date(ocorrencia.data);
     tempData.setHours(tempData.getHours() + 12);
     ocorrencia.data = tempData;
     
-    return this.http.put(environment.apiUrl + 'ocorrencia/' + placa, ocorrencia);
+    return this.http.put(environment.apiUrl + 'ocorrencia/' + numero, ocorrencia);
   }
 
-  excluir(ocorrencia: Ocorrencia) {
-    return this.http.delete(environment.apiUrl + 'ocorrencia/' + ocorrencia.placaVeiculo + '?data=' + ocorrencia.data + '&hora=' + ocorrencia.hora);
+  excluir(numero: number) {
+    return this.http.delete(environment.apiUrl + 'ocorrencia/' + numero);
   }
 
   listarByPlaca(placa: string) {
-    return this.http.get(environment.apiUrl + 'ocorrencia/' + placa);
+    return this.http.get(environment.apiUrl + 'ocorrencia/placa/' + placa);
   }
 }

@@ -55,7 +55,7 @@ const routes: Routes = [
     component: OcorrenciaNovo
   },
   {
-    path: 'ocorrencia/editar/:placa/:data/:hora',
+    path: 'ocorrencia/editar/:numero',
     component: OcorrenciaEditar
   },
   {

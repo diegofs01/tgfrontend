@@ -5,5 +5,6 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://tgbackend.herokuapp.com/api/'
+  //apiUrl: 'http://tgbackend.herokuapp.com/api/'
+  apiUrl: 'http://localhost:8080/api/'
 };

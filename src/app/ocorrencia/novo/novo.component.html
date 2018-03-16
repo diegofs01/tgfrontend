@@ -2,7 +2,7 @@
 
 <form class="formNovoOcorrencia">
   <mat-form-field>
-    <input matInput name="placaVeiculo" type="text" placeholder="Placa do Veículo" [(ngModel)]="ocorrencia.placaVeiculo" required>
+    <input matInput [textMask]="{mask: mascaraPlaca}" guide name="placaVeiculo" type="text" placeholder="Placa do Veículo" [(ngModel)]="ocorrencia.placaVeiculo" required>
   </mat-form-field>
 
   <mat-form-field>

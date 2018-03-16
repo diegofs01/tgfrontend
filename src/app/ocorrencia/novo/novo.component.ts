@@ -26,6 +26,7 @@ export class NovoComponent implements OnInit {
   public paginaAnterior: string;
 
   public hora = [/[0-2]/, /[0-9]/, ':', /[0-9]/, /[0-9]/, ':', /[0-9]/, /[0-9]/];
+  public mascaraPlaca = [/([A-Z]|[a-z])/, /([A-Z]|[a-z])/, /([A-Z]|[a-z])/, '-', /[1-9]/, /\d/, /\d/, /\d/];
 
   constructor(
     private ocorrenciaService: OcorrenciaService,
@@ -42,6 +43,7 @@ export class NovoComponent implements OnInit {
   }
 
   salvar() {
+    this.ocorrencia.placaVeiculo = this.ocorrencia.placaVeiculo.toUpperCase();
     this.ocorrenciaService.save(this.ocorrencia)
     .subscribe(response => {
       this.voltar();

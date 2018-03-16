@@ -49,20 +49,22 @@
 
   <table *ngIf="!listaVazia">
     <tr class="titulo">
+      <td>Número</td>
       <td>Placa</td>
       <td>Data</td>
       <td>Hora</td>
       <td>Detalhamento</td>
     </tr>
     <tr *ngFor="let ocorrencia of ocorrencias">
+      <td>{{ocorrencia.numero}}</td>
       <td>{{ocorrencia.placaVeiculo}}</td>
       <td>{{formataData(ocorrencia)}}</td>
       <td>{{ocorrencia.hora}}</td>
       <td>{{ocorrencia.descricao}}</td>
-      <button mat-icon-button [routerLink]="['/ocorrencia/editar', ocorrencia.placaVeiculo, ocorrencia.data, ocorrencia.hora]">
+      <button mat-icon-button [routerLink]="['/ocorrencia/editar', ocorrencia.numero]">
         <mat-icon aria-label="Editar Ocorrencia">edit</mat-icon>
       </button>
-      <button mat-icon-button (click)="excluirOcorrencia(ocorrencia)">
+      <button mat-icon-button (click)="excluirOcorrencia(ocorrencia.numero)">
         <mat-icon aria-label="Excluir Ocorrencia">delete</mat-icon>
       </button>
     </tr>

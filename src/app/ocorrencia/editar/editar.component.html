@@ -1,6 +1,10 @@
-<h2>Editar Ocorrência do Veículo {{ocorrencia.placaVeiculo}}</h2>
+<h2>Editar Ocorrência {{ocorrencia.numero}}</h2>
 
 <form class="formNovoOcorrencia">
+  <mat-form-field>
+    <input matInput name="numero" type="text" placeholder="Número da Ocorrencia" [(ngModel)]="ocorrencia.numero" disabled>
+  </mat-form-field>
+
   <mat-form-field>
     <input matInput name="placaVeiculo" type="text" placeholder="Placa do Veículo" [(ngModel)]="ocorrencia.placaVeiculo" disabled>
   </mat-form-field>
@@ -28,5 +32,5 @@
 </form>
 
 <button mat-raised-button color="primary" (click)="salvar()">Salvar</button>
-<button mat-raised-button color="warn" (click)="excluir()">Excluir</button>
+<button mat-raised-button color="warn" (click)="excluir(ocorrencia.numero)">Excluir</button>
 <button mat-raised-button [routerLink]="['/ocorrencia/listaOcorrencia']">Voltar</button>

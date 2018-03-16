@@ -26,7 +26,7 @@ export class EditarComponent implements OnInit {
   ngOnInit() {
     this.ocorrencia = {} as Ocorrencia;
     this.sub = this.route.params.subscribe(params => {
-      this.ocorrenciaService.buscar(params['placa'], params['data'], params['hora']).subscribe(response => {
+      this.ocorrenciaService.buscar(params['numero']).subscribe(response => {
         this.ocorrencia = response.json();
 
         this.tipoOcorrenciaService.lista().subscribe(response => {
@@ -38,14 +38,14 @@ export class EditarComponent implements OnInit {
   }
 
   salvar() {
-    this.ocorrenciaService.alterar(this.ocorrencia, this.ocorrencia.placaVeiculo)
+    this.ocorrenciaService.alterar(this.ocorrencia, this.ocorrencia.numero)
     .subscribe(response => {
       this.router.navigate(['/ocorrencia/listaOcorrencia']);
     });
   }
 
-  excluir() {
-    this.ocorrenciaService.excluir(this.ocorrencia)
+  excluir(numero: number) {
+    this.ocorrenciaService.excluir(numero)
     .subscribe(response => {
       this.router.navigate(['/ocorrencia/listaOcorrencia']);
     });
