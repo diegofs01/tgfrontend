@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 import { 
   MatListModule, 
@@ -83,7 +84,8 @@ import { NovoComponent as CursoNovo } from './curso/novo/novo.component';
     VeiculoService,
     OcorrenciaService,
     TipoOcorrenciaService,
-    CursoService
+    CursoService,
+    {provide: LocationStrategy, useClass: HashLocationStrategy}
   ],
   bootstrap: [AppComponent]
 })
