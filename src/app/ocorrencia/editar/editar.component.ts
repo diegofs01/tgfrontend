@@ -15,6 +15,7 @@ export class EditarComponent implements OnInit {
   public ocorrencia: Ocorrencia;
   public tiposOcorrencias: TipoOcorrencia[];
   public sub: any;
+  public veiculoCadastrado: string;
 
   constructor(
     private ocorrenciaService: OcorrenciaService,
@@ -32,16 +33,25 @@ export class EditarComponent implements OnInit {
         this.tipoOcorrenciaService.lista().subscribe(response => {
           this.tiposOcorrencias = response.json();
           this.ocorrencia.tipoOcorrencia = this.tiposOcorrencias.find(to => to.id === this.ocorrencia.tipoOcorrencia.id);
+          if(this.ocorrencia.veiculoCadastrado) {
+            this.veiculoCadastrado = 'Sim';
+          } else {
+            this.veiculoCadastrado = 'Não';
+          }
         });
       });
     });
   }
 
   salvar() {
-    this.ocorrenciaService.alterar(this.ocorrencia, this.ocorrencia.numero)
-    .subscribe(response => {
-      this.router.navigate(['/ocorrencia/listaOcorrencia']);
-    });
+    if(this.ocorrencia.descricao !== undefined &&
+      this.ocorrencia.descricao !== '') {
+        
+      this.ocorrenciaService.alterar(this.ocorrencia, this.ocorrencia.numero)
+      .subscribe(response => {
+        this.router.navigate(['/ocorrencia/listaOcorrencia']);
+      });
+    }
   }
 
   excluir(numero: number) {

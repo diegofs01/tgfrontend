@@ -44,4 +44,8 @@ export class OcorrenciaService {
   listarByPlaca(placa: string) {
     return this.http.get(environment.apiUrl + 'ocorrencia/placa/' + placa);
   }
+
+  verificarVeiculo(placa: string) {
+    return this.http.get(environment.apiUrl + 'ocorrencia/verificarVeiculo/' + placa);
+  }
 }

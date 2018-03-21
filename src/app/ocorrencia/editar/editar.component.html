@@ -29,6 +29,10 @@
     <textarea matInput name="descricao" placeholder="Detalhamento da Ocorrencia" [(ngModel)]="ocorrencia.descricao" required></textarea>
   </mat-form-field>
 
+  <mat-form-field>
+    <input matInput name="veiculoCadastrado" type="text" placeholder="Veículo Cadastrado?" [(ngModel)]="veiculoCadastrado" disabled>
+  </mat-form-field>
+
 </form>
 
 <button mat-raised-button color="primary" (click)="salvar()">Salvar</button>

@@ -2,15 +2,19 @@ import { TipoOcorrencia } from '../../../model/tipoOcorrencia.model';
 import { Ocorrencia } from '../../../model/ocorrencia.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OcorrenciaService } from '../../providers/ocorrencia.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { 
   MatFormFieldModule, 
   MatInputModule, 
   MatButtonModule,
-  MatSelectModule
+  MatSelectModule,
+  MatDialogModule,
+  MatDialog
 } from '@angular/material';
 import { TextMaskModule } from 'angular2-text-mask';
 import { TipoOcorrenciaService } from '../../providers/tipo-ocorrencia.service';
+import { DialogVeiculoNaoCadastradoComponent } from '../../dialog-veiculo-nao-cadastrado/dialog-veiculo-nao-cadastrado.component';
+import { isDate } from 'util';
 
 @Component({
   selector: 'app-novo',
@@ -32,7 +36,8 @@ export class NovoComponent implements OnInit {
     private ocorrenciaService: OcorrenciaService,
     private tipoOcorrenciaService: TipoOcorrenciaService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -43,7 +48,6 @@ export class NovoComponent implements OnInit {
   }
 
   salvar() {
-    this.ocorrencia.placaVeiculo = this.ocorrencia.placaVeiculo.toUpperCase();
     this.ocorrenciaService.save(this.ocorrencia)
     .subscribe(response => {
       this.voltar();
@@ -59,4 +63,67 @@ export class NovoComponent implements OnInit {
     this.router.navigate(['/ocorrencia/listaOcorrencia']);
   }
 
+  openDialog(numero: number) {
+    let dialogRef = this.dialog.open(DialogVeiculoNaoCadastradoComponent, {
+      width: '600px',
+      data: numero,
+      disableClose: true
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result) {
+        this.salvar();
+      }
+    });
+  }
+
+  verificarVeiculo() {
+    if(this.validarCadastro()) {
+
+      this.ocorrencia.placaVeiculo = this.ocorrencia.placaVeiculo.toUpperCase();
+
+      this.ocorrenciaService.verificarVeiculo(this.ocorrencia.placaVeiculo)
+      .subscribe(response => {
+        if(response.json() === 0) {
+          this.openDialog(response.json());
+        } else {
+          this.salvar();
+        }
+      });
+    }
+  }
+
+  validarCadastro(): boolean {
+    if(this.ocorrencia.placaVeiculo === undefined) {
+      return false;
+    }
+    if(this.ocorrencia.placaVeiculo === '') {
+      return false;
+    }
+    if(this.ocorrencia.placaVeiculo.search('_') >= 0) {;
+      return false;
+    }
+    if(this.ocorrencia.data === undefined) {
+      return false;
+    }
+    if(!isNaN(this.ocorrencia.data.valueOf())) {
+      return false;
+    }
+    if(this.ocorrencia.hora === undefined) {
+      return false;
+    }
+    if(this.ocorrencia.hora === '') {
+      return false;
+    }
+    if(this.ocorrencia.tipoOcorrencia === undefined) {
+      return false;
+    }
+    if(this.ocorrencia.descricao === undefined) {
+      return false;
+    }
+    if(this.ocorrencia.descricao === '') {
+      return false;
+    }
+    return true;
+  }
 }

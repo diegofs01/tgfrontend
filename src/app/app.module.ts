@@ -12,7 +12,8 @@ import {
   MatInputModule,
   MatIconModule,
   MatSelectModule,
-  MatToolbarModule
+  MatToolbarModule,
+  MatDialogModule
 } from '@angular/material/';
 import { TextMaskModule } from 'angular2-text-mask';
 
@@ -44,6 +45,7 @@ import { NovoComponent as TipoOcorrenciaNovo } from './tipo-ocorrencia/novo/novo
 import { ListaComponent as CursoLista } from './curso/lista/lista.component';
 import { EditarComponent as CursoEditar } from './curso/editar/editar.component';
 import { NovoComponent as CursoNovo } from './curso/novo/novo.component';
+import { DialogVeiculoNaoCadastradoComponent } from './dialog-veiculo-nao-cadastrado/dialog-veiculo-nao-cadastrado.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +64,8 @@ import { NovoComponent as CursoNovo } from './curso/novo/novo.component';
     TipoOcorrenciaNovo,
     CursoLista,
     CursoEditar,
-    CursoNovo
+    CursoNovo,
+    DialogVeiculoNaoCadastradoComponent
   ],
   imports: [
     BrowserModule,
@@ -77,7 +80,8 @@ import { NovoComponent as CursoNovo } from './curso/novo/novo.component';
     MatInputModule,
     MatIconModule,
     MatSelectModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatDialogModule
   ],
   providers: [
     AlunoService,
@@ -87,6 +91,9 @@ import { NovoComponent as CursoNovo } from './curso/novo/novo.component';
     CursoService,
     {provide: LocationStrategy, useClass: HashLocationStrategy}
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    DialogVeiculoNaoCadastradoComponent
+  ]
 })
 export class AppModule { }

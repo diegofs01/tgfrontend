@@ -54,6 +54,7 @@
       <td>Data</td>
       <td>Hora</td>
       <td>Detalhamento</td>
+      <td>Veiculo Cadastrado?</td>
     </tr>
     <tr *ngFor="let ocorrencia of ocorrencias">
       <td>{{ocorrencia.numero}}</td>
@@ -61,6 +62,7 @@
       <td>{{formataData(ocorrencia)}}</td>
       <td>{{ocorrencia.hora}}</td>
       <td>{{ocorrencia.descricao}}</td>
+      <td>{{ocorrencia.veiculoCadastrado ? 'Sim' : 'Não'}}</td>
       <button mat-icon-button [routerLink]="['/ocorrencia/editar', ocorrencia.numero]">
         <mat-icon aria-label="Editar Ocorrencia">edit</mat-icon>
       </button>

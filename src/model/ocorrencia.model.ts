@@ -6,5 +6,6 @@ export interface Ocorrencia {
     data: Date,
     hora: string,
     descricao: string,
-    tipoOcorrencia: TipoOcorrencia
+    tipoOcorrencia: TipoOcorrencia,
+    veiculoCadastrado: boolean
 };
