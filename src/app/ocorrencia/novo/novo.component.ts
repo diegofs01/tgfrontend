@@ -100,7 +100,7 @@ export class NovoComponent implements OnInit {
     if(this.ocorrencia.placaVeiculo === '') {
       return false;
     }
-    if(this.ocorrencia.placaVeiculo.search('_') >= 0) {;
+    if(this.ocorrencia.placaVeiculo.search('_') >= 0) {
       return false;
     }
     if(this.ocorrencia.data === undefined) {
