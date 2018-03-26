@@ -8,6 +8,7 @@ import { MatListModule, MatButtonModule, MatIconModule, MatSelectModule } from '
 import { NgIf } from '@angular/common';
 import { TextMaskModule } from 'angular2-text-mask';
 import { VeiculoService } from '../../providers/veiculo.service';
+import { isDate } from 'util';
 
 @Component({
   selector: 'app-lista-ocorrencia',
@@ -18,8 +19,7 @@ export class ListaOcorrenciaComponent implements OnInit {
 
   public tiposFiltro = [
     {valor: '', nome: 'Nenhum'},
-    {valor: 'periodo', nome: 'Periodo'},
-    {valor: 'tipoOcorrencia', nome: 'Tipo de Ocorrencia'},
+    {valor: 'periodo/tipo', nome: 'Periodo E/OU Tipo'},
     {valor: 'veiculo', nome: 'Veiculo'},
     {valor: 'aluno', nome: 'Aluno'}
   ];
@@ -28,6 +28,7 @@ export class ListaOcorrenciaComponent implements OnInit {
   public ocorrencias: Ocorrencia[];
   public filtro: string;
   public listaVazia: boolean;
+  public listaComFiltro: boolean;
 
   public placa: string;
   public ra: string;
@@ -68,6 +69,9 @@ export class ListaOcorrenciaComponent implements OnInit {
     this.placa = '';
     this.ra = '';
     this.idTipo = 0;
+    this.periodoInicial = undefined;
+    this.periodoFinal = undefined;
+    this.listaComFiltro = false;
   }
 
   formataData(ocorrencia: Ocorrencia) {
@@ -77,6 +81,7 @@ export class ListaOcorrenciaComponent implements OnInit {
   }
 
   consultarVeiculo() {
+    this.listaComFiltro = true;
     this.ocorrencias = [];
     if(this.placa !== undefined && this.placa !== '') {
       this.placa = this.placa.toUpperCase();
@@ -87,6 +92,7 @@ export class ListaOcorrenciaComponent implements OnInit {
   }
 
   filtrarOcorrenciasByRA() {
+    this.listaComFiltro = true;
     this.ocorrencias = [];
     if(this.ra !== undefined && this.ra !== '') {
       let tempVeiculos = [];
@@ -106,39 +112,66 @@ export class ListaOcorrenciaComponent implements OnInit {
     }
   }
 
-  filtrarOcorrenciasByTipo(id: Number) {
-    if(id > 0) {
-      this.ocorrencias = [];
-      let tempList = [];
-      this.ocorrenciaService.lista().subscribe(data => {
-        this.ocorrencias = data.json();
-        this.ocorrencias.forEach(oco => {
-          if(oco.tipoOcorrencia.id === id) {
-            tempList.push(oco);
-          }
-        });
-        this.ocorrencias = tempList;
-      });
-    } else {
-      this.ocorrencias = [];
+  filtrarOcorrenciasByPeriodoETipo() {
+    this.listaComFiltro = true;
+
+    if(this.idTipo !== 0 && 
+      (this.periodoInicial === undefined || this.periodoInicial.toString() === '') && 
+      (this.periodoFinal === undefined || this.periodoFinal.toString() === '')
+      ) {
+        this.filtroPorTipoOcorrencia();
+    }
+
+    
+    if(this.idTipo === 0 && 
+      (this.periodoInicial !== undefined && this.periodoInicial.toString() !== '') && 
+      (this.periodoFinal !== undefined && this.periodoFinal.toString() !== '')
+      ) {
+        this.filtroPorPeriodo();
+    }
+
+    if(this.idTipo !== 0 && 
+      (this.periodoInicial !== undefined && this.periodoInicial.toString() !== '') && 
+      (this.periodoFinal !== undefined && this.periodoFinal.toString() !== '')
+      ) {
+        this.filtroPorPeriodoETipo();
     }
   }
 
-  filtrarOcorrenciasByPeriodo() {
+  filtroPorPeriodo() {
     if(this.periodoInicial <= this.periodoFinal) {
-      this.ocorrencias = [];
-      let tempList: any;
+      let tempList = [];
 
-      this.ocorrenciaService.lista().subscribe(data => {
-        tempList = data.json();
-        tempList.forEach(oco => {
-          if(oco.data >= this.periodoInicial && oco.data <= this.periodoFinal) {
-            this.ocorrencias.push(oco);
-          }
-        });
+      this.ocorrencias.forEach(oco => {
+        if(oco.data >= this.periodoInicial && oco.data <= this.periodoFinal) {
+          tempList.push(oco);
+        }
       });
-    } else {
-      this.ocorrencias = [];
+      this.ocorrencias = tempList;
+    } 
+  }
+
+  filtroPorTipoOcorrencia() {
+    let tempList = [];
+
+    this.ocorrencias.forEach(oco => {
+      if(oco.tipoOcorrencia.id === this.idTipo) {
+        tempList.push(oco);
+      }
+    });
+    this.ocorrencias = tempList;
+  }
+
+  filtroPorPeriodoETipo() {
+    if(this.periodoInicial <= this.periodoFinal) {
+      let tempList = [];
+
+      this.ocorrencias.forEach(oco => {
+        if(oco.data >= this.periodoInicial && oco.data <= this.periodoFinal && oco.tipoOcorrencia.id === this.idTipo) {
+          tempList.push(oco);
+        }
+      });
+      this.ocorrencias = tempList;
     }
   }
 
