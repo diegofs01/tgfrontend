@@ -46,6 +46,7 @@ import { ListaComponent as CursoLista } from './curso/lista/lista.component';
 import { EditarComponent as CursoEditar } from './curso/editar/editar.component';
 import { NovoComponent as CursoNovo } from './curso/novo/novo.component';
 import { VeiculoNaoCadastradoComponent as DialogVeiculoNaoCadastrado } from './dialogs/veiculo-nao-cadastrado/veiculo-nao-cadastrado.component';
+import { FiltroOcorrenciasComponent as DialogFiltrarOcorrencias } from './dialogs/filtro-ocorrencias/filtro-ocorrencias.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { VeiculoNaoCadastradoComponent as DialogVeiculoNaoCadastrado } from './d
     CursoLista,
     CursoEditar,
     CursoNovo,
-    DialogVeiculoNaoCadastrado
+    DialogVeiculoNaoCadastrado,
+    DialogFiltrarOcorrencias
   ],
   imports: [
     BrowserModule,
@@ -93,7 +95,8 @@ import { VeiculoNaoCadastradoComponent as DialogVeiculoNaoCadastrado } from './d
   ],
   bootstrap: [AppComponent],
   entryComponents: [
-    DialogVeiculoNaoCadastrado
+    DialogVeiculoNaoCadastrado,
+    DialogFiltrarOcorrencias
   ]
 })
 export class AppModule { }

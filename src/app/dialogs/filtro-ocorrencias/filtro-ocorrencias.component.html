@@ -1,0 +1,43 @@
+<div>
+  <h3 md-dialog-title>Filtra Ocorrencias</h3>
+  <hr>
+  <mat-dialog-content>
+    <p>Escolha o filtro:</p>
+    <mat-select name="TipoFiltro" placeholder="Filtro" [(ngModel)]="filtro">
+      <mat-option *ngFor="let tf of tiposFiltro" [value]="tf.valor">{{tf.nome}}</mat-option>
+    </mat-select>
+
+    <div *ngIf="filtro === 'aluno'">
+      <mat-nav-list>
+        <input [(ngModel)]="ra" type="text" placeholder="RA do Aluno">
+      </mat-nav-list>
+    </div>
+
+    <div *ngIf="filtro === 'veiculo'">
+      <mat-nav-list>
+        <input [textMask]="{mask: placaVeiculo}" guide [(ngModel)]="placa" type="text" placeholder="AAA-9999">
+      </mat-nav-list>
+    </div>
+
+    <div *ngIf="filtro === 'periodo/tipo'">
+      <mat-nav-list>
+        <p>
+        Data Inicial: <input matInput name="dataInicial" type="date" placeholder="Data Inicial" [(ngModel)]="periodoInicial"> Data Final: <input matInput name="dataFinal" type="date" placeholder="Data Final" [(ngModel)]="periodoFinal">
+        </p>
+        <p>
+        Tipo: <mat-select name="TipoOcorrencia" placeholder="Tipo Filtro" [(ngModel)]="idTipo">
+          <mat-option *ngFor="let tipoOcorrencia of tiposOcorrencias" [value]="tipoOcorrencia.id">
+            {{tipoOcorrencia.nome}}
+          </mat-option>
+        </mat-select>
+        </p>
+      </mat-nav-list>
+    </div>
+
+  </mat-dialog-content>
+  <hr>
+  <mat-dialog-actions>
+    <button mat-raised-button color="primary" (click)="onCloseConfirm()">Filtrar</button>
+    <button mat-raised-button color="warn" (click)="onCloseCancel()">Cancelar</button>
+  </mat-dialog-actions>
+</div>

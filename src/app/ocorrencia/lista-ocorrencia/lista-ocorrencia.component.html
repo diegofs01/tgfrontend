@@ -1,46 +1,11 @@
 <div id="listaOcorrencia">
   
-  <h2>Lista de Ocorrencias</h2>
+  <h2>Lista de Ocorrencias
 
-  <mat-nav-list>
-    <p>Filtro de Ocorrencias:</p>
-    <mat-select name="TipoFiltro" placeholder="Filtro" [(ngModel)]="filtro">
-      <mat-option *ngFor="let tf of tiposFiltro" [value]="tf.valor">{{tf.nome}}</mat-option>
-    </mat-select>
-  </mat-nav-list>
+    <button mat-raised-button (click)="openDialog()" color="primary" *ngIf="!listaComFiltro">Filtrar Ocorrencias</button>
+    <button mat-raised-button (click)="listarVeiculos()" color="warn" *ngIf="listaComFiltro">Resetar Filtro</button>
 
-  <div *ngIf="filtro === 'periodo/tipo'">
-    <mat-nav-list>
-      <p>
-      Data Inicial: <input matInput name="dataInicial" type="date" placeholder="Data Inicial" [(ngModel)]="periodoInicial"> Data Final: <input matInput name="dataFinal" type="date" placeholder="Data Final" [(ngModel)]="periodoFinal">
-      </p>
-      <p>
-      Tipo: <mat-select name="TipoOcorrencia" placeholder="Tipo Filtro" [(ngModel)]="idTipo">
-        <mat-option *ngFor="let tipoOcorrencia of tiposOcorrencias" [value]="tipoOcorrencia.id">
-          {{tipoOcorrencia.nome}}
-        </mat-option>
-      </mat-select>
-      </p>
-      <button mat-raised-button (click)="filtrarOcorrenciasByPeriodoETipo()" color="primary" *ngIf="listaComFiltro === false">Consultar</button>
-      <button mat-raised-button (click)="listarVeiculos()" color="warn" *ngIf="listaComFiltro === true">Resetar</button>
-    </mat-nav-list>
-  </div>
-
-  <div *ngIf="filtro === 'veiculo'">
-    <mat-nav-list>
-      <input [textMask]="{mask: placaVeiculo}" guide [(ngModel)]="placa" type="text" placeholder="AAA-9999">
-      <button mat-raised-button (click)="consultarVeiculo()" color="primary" *ngIf="listaComFiltro === false">Consultar</button>
-      <button mat-raised-button (click)="listarVeiculos()" color="warn" *ngIf="listaComFiltro === true">Resetar</button>
-    </mat-nav-list>
-  </div>
-
-  <div *ngIf="filtro === 'aluno'">
-    <mat-nav-list>
-      <input [(ngModel)]="ra" type="text" placeholder="RA do Aluno">
-      <button mat-raised-button (click)="filtrarOcorrenciasByRA()" color="primary" *ngIf="listaComFiltro === false">Consultar</button>
-      <button mat-raised-button (click)="listarVeiculos()" color="warn" *ngIf="listaComFiltro === true">Resetar</button>
-    </mat-nav-list>
-  </div>
+  </h2>
 
   <table *ngIf="!listaVazia">
     <tr class="titulo">

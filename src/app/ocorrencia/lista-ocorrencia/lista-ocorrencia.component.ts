@@ -4,11 +4,11 @@ import { Ocorrencia } from '../../../model/ocorrencia.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OcorrenciaService } from '../../providers/ocorrencia.service';
 import { Component, OnInit } from '@angular/core';
-import { MatListModule, MatButtonModule, MatIconModule, MatSelectModule } from '@angular/material';
+import { MatListModule, MatButtonModule, MatIconModule, MatSelectModule, MatDialog } from '@angular/material';
 import { NgIf } from '@angular/common';
 import { TextMaskModule } from 'angular2-text-mask';
 import { VeiculoService } from '../../providers/veiculo.service';
-import { isDate } from 'util';
+import { FiltroOcorrenciasComponent } from '../../dialogs/filtro-ocorrencias/filtro-ocorrencias.component';
 
 @Component({
   selector: 'app-lista-ocorrencia',
@@ -17,39 +17,22 @@ import { isDate } from 'util';
 })
 export class ListaOcorrenciaComponent implements OnInit {
 
-  public tiposFiltro = [
-    {valor: '', nome: 'Nenhum'},
-    {valor: 'periodo/tipo', nome: 'Periodo E/OU Tipo'},
-    {valor: 'veiculo', nome: 'Veiculo'},
-    {valor: 'aluno', nome: 'Aluno'}
-  ];
-
   public tiposOcorrencias: TipoOcorrencia[];
   public ocorrencias: Ocorrencia[];
-  public filtro: string;
   public listaVazia: boolean;
   public listaComFiltro: boolean;
-
-  public placa: string;
-  public ra: string;
-  public idTipo: number;
-  public filtradoTipo: boolean;
-  public periodoInicial: Date;
-  public periodoFinal: Date;
-
-  public placaVeiculo = [/([A-Z]|[a-z])/, /([A-Z]|[a-z])/, /([A-Z]|[a-z])/, '-', /[1-9]/, /\d/, /\d/, /\d/];
 
   constructor(
     private ocorrenciaService: OcorrenciaService,
     private veiculoService: VeiculoService,
     private tipoOcorrenciaService: TipoOcorrenciaService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit() {
     this.ocorrencias = [];
-    this.filtro = '';
     this.listarVeiculos();
     this.tipoOcorrenciaService.lista().subscribe(response => {
       this.tiposOcorrencias = response.json();
@@ -66,11 +49,6 @@ export class ListaOcorrenciaComponent implements OnInit {
         this.listaVazia = true;
       }
     });
-    this.placa = '';
-    this.ra = '';
-    this.idTipo = 0;
-    this.periodoInicial = undefined;
-    this.periodoFinal = undefined;
     this.listaComFiltro = false;
   }
 
@@ -80,26 +58,57 @@ export class ListaOcorrenciaComponent implements OnInit {
     return tempData.toLocaleDateString();
   }
 
-  consultarVeiculo() {
-    this.listaComFiltro = true;
+  excluirOcorrencia(numero: number) {
+    this.ocorrenciaService.excluir(numero)
+    .subscribe(response => {
+      window.location.reload();
+    });
+  }
+
+  openDialog() {
+    let dialogRef = this.dialog.open(FiltroOcorrenciasComponent, {
+      width: '600px',
+      data: this.tiposOcorrencias,
+      disableClose: true
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result.filtro === 'aluno') {
+        this.filtrarOcorrenciasByRA(result.ra);
+      } else {
+        if(result.filtro === 'veiculo') {
+          this.filtrarOcorrenciasByVeiculo(result.placa);
+        } else {
+          if(result.filtro === 'periodo/tipo') {
+            this.filtrarOcorrenciasByPeriodoETipo(result.periodoInicial, result.periodoFinal, result.idTipo);
+          } else {
+            this.listarVeiculos();
+          }
+        }
+      }
+    });
+  }
+
+  filtrarOcorrenciasByVeiculo(placa: string) {
+    this.listaComFiltro = true;    
     this.ocorrencias = [];
-    if(this.placa !== undefined && this.placa !== '') {
-      this.placa = this.placa.toUpperCase();
-      this.ocorrenciaService.listarByPlaca(this.placa).subscribe(data => {
+    if(placa !== undefined && placa !== '' && placa.search('_') === -1) {
+      placa = placa.toUpperCase();
+      this.ocorrenciaService.listarByPlaca(placa).subscribe(data => {
         this.ocorrencias = data.json();
       });
     }
   }
 
-  filtrarOcorrenciasByRA() {
+  filtrarOcorrenciasByRA(ra: string) {
     this.listaComFiltro = true;
     this.ocorrencias = [];
-    if(this.ra !== undefined && this.ra !== '') {
+    if(ra !== undefined && ra !== '') {
       let tempVeiculos = [];
       this.veiculoService.lista().subscribe(data => {
         let tempData = data.json();
         tempData.forEach(td => {
-          if(td.raAluno === this.ra) {
+          if(td.raAluno === ra) {
             tempVeiculos.push(td);
           }
         });
@@ -112,38 +121,48 @@ export class ListaOcorrenciaComponent implements OnInit {
     }
   }
 
-  filtrarOcorrenciasByPeriodoETipo() {
-    this.listaComFiltro = true;
-
-    if(this.idTipo !== 0 && 
-      (this.periodoInicial === undefined || this.periodoInicial.toString() === '') && 
-      (this.periodoFinal === undefined || this.periodoFinal.toString() === '')
+  filtrarOcorrenciasByPeriodoETipo(periodoInicial: Date, periodoFinal: Date, idTipo: number) {
+    if(idTipo !== 0 && 
+      (periodoInicial === undefined || periodoInicial.toString() === '') && 
+      (periodoFinal === undefined || periodoFinal.toString() === '')
       ) {
-        this.filtroPorTipoOcorrencia();
+        this.filtroPorTipoOcorrencia(idTipo);
     }
 
-    
-    if(this.idTipo === 0 && 
-      (this.periodoInicial !== undefined && this.periodoInicial.toString() !== '') && 
-      (this.periodoFinal !== undefined && this.periodoFinal.toString() !== '')
+    if(idTipo === 0 && 
+      (periodoInicial !== undefined && periodoInicial.toString() !== '') && 
+      (periodoFinal !== undefined && periodoFinal.toString() !== '')
       ) {
-        this.filtroPorPeriodo();
+        this.filtroPorPeriodo(periodoInicial, periodoFinal);
     }
 
-    if(this.idTipo !== 0 && 
-      (this.periodoInicial !== undefined && this.periodoInicial.toString() !== '') && 
-      (this.periodoFinal !== undefined && this.periodoFinal.toString() !== '')
+    if(idTipo !== 0 && 
+      (periodoInicial !== undefined && periodoInicial.toString() !== '') && 
+      (periodoFinal !== undefined && periodoFinal.toString() !== '')
       ) {
-        this.filtroPorPeriodoETipo();
+        this.filtroPorPeriodoETipo(periodoInicial, periodoFinal, idTipo);
     }
   }
 
-  filtroPorPeriodo() {
-    if(this.periodoInicial <= this.periodoFinal) {
+  filtroPorTipoOcorrencia(idTipo: number) {
+    this.listaComFiltro = true;
+    let tempList = [];
+
+    this.ocorrencias.forEach(oco => {
+      if(oco.tipoOcorrencia.id === idTipo) {
+        tempList.push(oco);
+      }
+    });
+    this.ocorrencias = tempList;
+  }
+
+  filtroPorPeriodo(periodoInicial: Date, periodoFinal: Date) {
+    this.listaComFiltro = true;
+    if(periodoInicial <= periodoFinal) {
       let tempList = [];
 
       this.ocorrencias.forEach(oco => {
-        if(oco.data >= this.periodoInicial && oco.data <= this.periodoFinal) {
+        if(oco.data >= periodoInicial && oco.data <= periodoFinal) {
           tempList.push(oco);
         }
       });
@@ -151,34 +170,17 @@ export class ListaOcorrenciaComponent implements OnInit {
     } 
   }
 
-  filtroPorTipoOcorrencia() {
-    let tempList = [];
-
-    this.ocorrencias.forEach(oco => {
-      if(oco.tipoOcorrencia.id === this.idTipo) {
-        tempList.push(oco);
-      }
-    });
-    this.ocorrencias = tempList;
-  }
-
-  filtroPorPeriodoETipo() {
-    if(this.periodoInicial <= this.periodoFinal) {
+  filtroPorPeriodoETipo(periodoInicial: Date, periodoFinal: Date, idTipo: number) {
+    this.listaComFiltro = true;
+    if(periodoInicial <= periodoFinal) {
       let tempList = [];
 
       this.ocorrencias.forEach(oco => {
-        if(oco.data >= this.periodoInicial && oco.data <= this.periodoFinal && oco.tipoOcorrencia.id === this.idTipo) {
+        if(oco.data >= periodoInicial && oco.data <= periodoFinal && oco.tipoOcorrencia.id === idTipo) {
           tempList.push(oco);
         }
       });
       this.ocorrencias = tempList;
     }
-  }
-
-  excluirOcorrencia(numero: number) {
-    this.ocorrenciaService.excluir(numero)
-    .subscribe(response => {
-      window.location.reload();
-    });
   }
 }
