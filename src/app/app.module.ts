@@ -45,7 +45,7 @@ import { NovoComponent as TipoOcorrenciaNovo } from './tipo-ocorrencia/novo/novo
 import { ListaComponent as CursoLista } from './curso/lista/lista.component';
 import { EditarComponent as CursoEditar } from './curso/editar/editar.component';
 import { NovoComponent as CursoNovo } from './curso/novo/novo.component';
-import { DialogVeiculoNaoCadastradoComponent } from './dialog-veiculo-nao-cadastrado/dialog-veiculo-nao-cadastrado.component';
+import { VeiculoNaoCadastradoComponent as DialogVeiculoNaoCadastrado } from './dialogs/veiculo-nao-cadastrado/veiculo-nao-cadastrado.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +65,7 @@ import { DialogVeiculoNaoCadastradoComponent } from './dialog-veiculo-nao-cadast
     CursoLista,
     CursoEditar,
     CursoNovo,
-    DialogVeiculoNaoCadastradoComponent
+    DialogVeiculoNaoCadastrado
   ],
   imports: [
     BrowserModule,
@@ -93,7 +93,7 @@ import { DialogVeiculoNaoCadastradoComponent } from './dialog-veiculo-nao-cadast
   ],
   bootstrap: [AppComponent],
   entryComponents: [
-    DialogVeiculoNaoCadastradoComponent
+    DialogVeiculoNaoCadastrado
   ]
 })
 export class AppModule { }

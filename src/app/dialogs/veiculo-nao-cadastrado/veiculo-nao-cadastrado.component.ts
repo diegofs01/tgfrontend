@@ -2,13 +2,13 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
-  selector: 'app-dialog-veiculo-nao-cadastrado',
-  templateUrl: './dialog-veiculo-nao-cadastrado.component.html',
-  styleUrls: ['./dialog-veiculo-nao-cadastrado.component.css']
+  selector: 'app-veiculo-nao-cadastrado',
+  templateUrl: './veiculo-nao-cadastrado.component.html',
+  styleUrls: ['./veiculo-nao-cadastrado.component.css']
 })
-export class DialogVeiculoNaoCadastradoComponent implements OnInit {
+export class VeiculoNaoCadastradoComponent implements OnInit {
 
-  constructor(public thisDialogRef: MatDialogRef<DialogVeiculoNaoCadastradoComponent>, 
+  constructor(public thisDialogRef: MatDialogRef<VeiculoNaoCadastradoComponent>, 
     @Inject(MAT_DIALOG_DATA) public data: string) { }
 
   ngOnInit() {

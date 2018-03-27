@@ -13,7 +13,7 @@ import {
 } from '@angular/material';
 import { TextMaskModule } from 'angular2-text-mask';
 import { TipoOcorrenciaService } from '../../providers/tipo-ocorrencia.service';
-import { DialogVeiculoNaoCadastradoComponent } from '../../dialog-veiculo-nao-cadastrado/dialog-veiculo-nao-cadastrado.component';
+import { VeiculoNaoCadastradoComponent } from '../../dialogs/veiculo-nao-cadastrado/veiculo-nao-cadastrado.component';
 import { isDate } from 'util';
 
 @Component({
@@ -64,7 +64,7 @@ export class NovoComponent implements OnInit {
   }
 
   openDialog(numero: number) {
-    let dialogRef = this.dialog.open(DialogVeiculoNaoCadastradoComponent, {
+    let dialogRef = this.dialog.open(VeiculoNaoCadastradoComponent, {
       width: '600px',
       data: numero,
       disableClose: true
